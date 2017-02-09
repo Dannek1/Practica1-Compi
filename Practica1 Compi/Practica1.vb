@@ -648,7 +648,17 @@ Module MyParser
 
                         tempF.musica = Reduction.Item(0).Data.ToString()
 
+                    ElseIf (opcion = 6) Then
+
+                        tempN.Rnave = Reduction.Item(0).Data.ToString()
+                    ElseIf (opcion = 7) Then
+
+                        tempN.Rdisparo = Reduction.Item(0).Data.ToString()
+                    ElseIf (opcion = 8) Then
+
+                        tempN.RSonido = Reduction.Item(0).Data.ToString()
                     End If
+
                     ' <Ruta> ::= Ruta 
 
                 Case ProductionIndex.Rdefensa_Defensas
@@ -671,9 +681,13 @@ Module MyParser
                     ' <RImagen_Def> ::= 'imagen_defensa' 
 
                 Case ProductionIndex.Rimagen_dis_Imagen_disparo
+                    If (opcion = 5 Or opcion = 6 Or opcion = 8 Or opcion = 9) Then
+                        opcion = 7
+                    End If
                     ' <RImagen_Dis> ::= 'imagen_disparo' 
 
                 Case ProductionIndex.Rimagen_n_Imagen_nave
+                    opcion = 6
                     ' <RImagen_N> ::= 'imagen_nave' 
 
                 Case ProductionIndex.Rnave_Naves
@@ -689,9 +703,15 @@ Module MyParser
                     ' <RSonido> ::= sonido 
 
                 Case ProductionIndex.Rsonido_dis_Sonido_disparo
+                    If (opcion = 5 Or opcion = 6 Or opcion = 7 Or opcion = 9) Then
+                        opcion = 8
+                    End If
                     ' <RSonido_Dis> ::= 'sonido_disparo' 
 
                 Case ProductionIndex.Rvida_Vida
+                    If (opcion = 5 Or opcion = 6 Or opcion = 7 Or opcion = 8) Then
+                        opcion = 9
+                    End If
                     ' <RVida> ::= vida 
 
                 Case ProductionIndex.Rataque_Ataque
@@ -734,6 +754,9 @@ Module MyParser
                     ' <MULT> ::= <VALOR> 
 
                 Case ProductionIndex.Valor_Entero
+                    If (opcion = 9) Then
+                        tempN.vida = Double.Parse(.Item(0).Data.ToString)
+                    End If
                     ' <VALOR> ::= Entero 
 
                 Case ProductionIndex.Valor_Lparen_Rparen
@@ -742,7 +765,8 @@ Module MyParser
             End Select
         End With
         Dim a As String
-        If (a <> "") Then
+        a =Reduction.Item(0).Data
+        If(a <> "") Then
             a = a + "," + Reduction.Parent.TableIndex.ToString
             System.Console.WriteLine(a)
 
