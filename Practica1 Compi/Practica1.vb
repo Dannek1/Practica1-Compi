@@ -329,287 +329,287 @@ Module MyParser
         Dim Result As Object = Nothing
 
         With Reduction
-            Select Case .Parent.TableIndex                        
-                Case ProductionIndex.S                 
+            Select Case .Parent.TableIndex
+                Case ProductionIndex.S
                     ' <S> ::= <Inicio> <Cuerpo> 
 
-                Case ProductionIndex.Inicio_Lbracket_Div_Rbracket                 
+                Case ProductionIndex.Inicio_Lbracket_Div_Rbracket
                     ' <Inicio> ::= '[' <RInicio> '/' <ID> ']' 
 
-                Case ProductionIndex.Rinicio_Inicio                 
+                Case ProductionIndex.Rinicio_Inicio
                     ' <RInicio> ::= Inicio 
 
-                Case ProductionIndex.Fin_Lbracket_Div_Rbracket                 
+                Case ProductionIndex.Fin_Lbracket_Div_Rbracket
                     ' <Fin> ::= '[' <RFin> '/' <ID> ']' 
 
-                Case ProductionIndex.Rfin_Fin                 
+                Case ProductionIndex.Rfin_Fin
                     ' <RFin> ::= fin 
 
-                Case ProductionIndex.Cuerpo                 
+                Case ProductionIndex.Cuerpo
                     ' <Cuerpo> ::= <CuerpoEscenarios> <CuerpoNaves> <CuerpoDefensas> <Enemigo> <Fin> 
 
-                Case ProductionIndex.Cuerpo2                 
+                Case ProductionIndex.Cuerpo2
                     ' <Cuerpo> ::= <CuerpoEscenarios> <CuerpoNaves> <Enemigo> <CuerpoDefensas> <Fin> 
 
-                Case ProductionIndex.Cuerpo3                 
+                Case ProductionIndex.Cuerpo3
                     ' <Cuerpo> ::= <CuerpoEscenarios> <CuerpoDefensas> <CuerpoNaves> <Enemigo> <Fin> 
 
-                Case ProductionIndex.Cuerpo4                 
+                Case ProductionIndex.Cuerpo4
                     ' <Cuerpo> ::= <CuerpoEscenarios> <CuerpoDefensas> <Enemigo> <CuerpoNaves> <Fin> 
 
-                Case ProductionIndex.Cuerpo5                 
+                Case ProductionIndex.Cuerpo5
                     ' <Cuerpo> ::= <CuerpoEscenarios> <Enemigo> <CuerpoNaves> <CuerpoDefensas> <Fin> 
 
-                Case ProductionIndex.Cuerpo6                 
+                Case ProductionIndex.Cuerpo6
                     ' <Cuerpo> ::= <CuerpoEscenarios> <Enemigo> <CuerpoDefensas> <CuerpoNaves> <Fin> 
 
-                Case ProductionIndex.Cuerpo7                 
+                Case ProductionIndex.Cuerpo7
                     ' <Cuerpo> ::= <CuerpoNaves> <CuerpoEscenarios> <CuerpoDefensas> <Enemigo> <Fin> 
 
-                Case ProductionIndex.Cuerpo8                 
+                Case ProductionIndex.Cuerpo8
                     ' <Cuerpo> ::= <CuerpoNaves> <CuerpoEscenarios> <Enemigo> <CuerpoDefensas> <Fin> 
 
-                Case ProductionIndex.Cuerpo9                 
+                Case ProductionIndex.Cuerpo9
                     ' <Cuerpo> ::= <CuerpoNaves> <CuerpoDefensas> <CuerpoEscenarios> <Enemigo> <Fin> 
 
-                Case ProductionIndex.Cuerpo10                 
+                Case ProductionIndex.Cuerpo10
                     ' <Cuerpo> ::= <CuerpoNaves> <CuerpoDefensas> <Enemigo> <CuerpoEscenarios> <Fin> 
 
-                Case ProductionIndex.Cuerpo11                 
+                Case ProductionIndex.Cuerpo11
                     ' <Cuerpo> ::= <CuerpoNaves> <Enemigo> <CuerpoEscenarios> <CuerpoDefensas> <Fin> 
 
-                Case ProductionIndex.Cuerpo12                 
+                Case ProductionIndex.Cuerpo12
                     ' <Cuerpo> ::= <CuerpoNaves> <Enemigo> <CuerpoDefensas> <CuerpoEscenarios> <Fin> 
 
-                Case ProductionIndex.Cuerpo13                 
+                Case ProductionIndex.Cuerpo13
                     ' <Cuerpo> ::= <CuerpoDefensas> <CuerpoEscenarios> <CuerpoNaves> <Enemigo> <Fin> 
 
-                Case ProductionIndex.Cuerpo14                 
+                Case ProductionIndex.Cuerpo14
                     ' <Cuerpo> ::= <CuerpoDefensas> <CuerpoEscenarios> <Enemigo> <CuerpoNaves> <Fin> 
 
-                Case ProductionIndex.Cuerpo15                 
+                Case ProductionIndex.Cuerpo15
                     ' <Cuerpo> ::= <CuerpoDefensas> <CuerpoNaves> <CuerpoEscenarios> <Enemigo> <Fin> 
 
-                Case ProductionIndex.Cuerpo16                 
+                Case ProductionIndex.Cuerpo16
                     ' <Cuerpo> ::= <CuerpoDefensas> <CuerpoNaves> <Enemigo> <CuerpoEscenarios> <Fin> 
 
-                Case ProductionIndex.Cuerpo17                 
+                Case ProductionIndex.Cuerpo17
                     ' <Cuerpo> ::= <CuerpoDefensas> <Enemigo> <CuerpoEscenarios> <CuerpoNaves> <Fin> 
 
-                Case ProductionIndex.Cuerpo18                 
+                Case ProductionIndex.Cuerpo18
                     ' <Cuerpo> ::= <CuerpoDefensas> <Enemigo> <CuerpoNaves> <CuerpoEscenarios> <Fin> 
 
-                Case ProductionIndex.Cuerpo19                 
+                Case ProductionIndex.Cuerpo19
                     ' <Cuerpo> ::= <Enemigo> <CuerpoEscenarios> <CuerpoNaves> <CuerpoDefensas> <Fin> 
 
-                Case ProductionIndex.Cuerpo20                 
+                Case ProductionIndex.Cuerpo20
                     ' <Cuerpo> ::= <Enemigo> <CuerpoEscenarios> <CuerpoDefensas> <CuerpoNaves> <Fin> 
 
-                Case ProductionIndex.Cuerpo21                 
+                Case ProductionIndex.Cuerpo21
                     ' <Cuerpo> ::= <Enemigo> <CuerpoNaves> <CuerpoEscenarios> <CuerpoDefensas> <Fin> 
 
-                Case ProductionIndex.Cuerpo22                 
+                Case ProductionIndex.Cuerpo22
                     ' <Cuerpo> ::= <Enemigo> <CuerpoNaves> <CuerpoDefensas> <CuerpoEscenarios> <Fin> 
 
-                Case ProductionIndex.Cuerpo23                 
+                Case ProductionIndex.Cuerpo23
                     ' <Cuerpo> ::= <Enemigo> <CuerpoDefensas> <CuerpoEscenarios> <CuerpoNaves> <Fin> 
 
-                Case ProductionIndex.Cuerpo24                 
+                Case ProductionIndex.Cuerpo24
                     ' <Cuerpo> ::= <Enemigo> <CuerpoDefensas> <CuerpoNaves> <CuerpoEscenarios> 
 
-                Case ProductionIndex.Cuerpoescenarios                 
+                Case ProductionIndex.Cuerpoescenarios
                     ' <CuerpoEscenarios> ::= <CuerpoEscenarios> <CEscenario> 
 
-                Case ProductionIndex.Cuerpoescenarios2                 
+                Case ProductionIndex.Cuerpoescenarios2
                     ' <CuerpoEscenarios> ::= <CEscenario> 
 
-                Case ProductionIndex.Cescenario                 
+                Case ProductionIndex.Cescenario
                     ' <CEscenario> ::= <InicioEscenario> <CIES> 
 
-                Case ProductionIndex.Cies                 
+                Case ProductionIndex.Cies
                     ' <CIES> ::= <fondo> <coma> <CIES> 
 
-                Case ProductionIndex.Cies2                 
+                Case ProductionIndex.Cies2
                     ' <CIES> ::= <sonido> <coma> <CIES> 
 
-                Case ProductionIndex.Cies3                 
+                Case ProductionIndex.Cies3
                     ' <CIES> ::= <fondo> <cierre> 
 
-                Case ProductionIndex.Cies4                 
+                Case ProductionIndex.Cies4
                     ' <CIES> ::= <sonido> <cierre> 
 
-                Case ProductionIndex.Inicioescenario_Lbracket_Div_Rbracket                 
+                Case ProductionIndex.Inicioescenario_Lbracket_Div_Rbracket
                     ' <InicioEscenario> ::= '[' <REscenario> '/' <ID> ']' 
 
-                Case ProductionIndex.Fondo_Eq                 
+                Case ProductionIndex.Fondo_Eq
                     ' <fondo> ::= <RFondo> '=' <Ruta> 
 
-                Case ProductionIndex.Sonido_Eq                 
+                Case ProductionIndex.Sonido_Eq
                     ' <sonido> ::= <RSonido> '=' <Ruta> 
 
-                Case ProductionIndex.Cuerponaves                 
+                Case ProductionIndex.Cuerponaves
                     ' <CuerpoNaves> ::= <CuerpoNaves> <CNave> 
 
-                Case ProductionIndex.Cuerponaves2                 
+                Case ProductionIndex.Cuerponaves2
                     ' <CuerpoNaves> ::= <CNave> 
 
-                Case ProductionIndex.Cnave                 
+                Case ProductionIndex.Cnave
                     ' <CNave> ::= <InicioNave> <CINA> 
 
-                Case ProductionIndex.Cina                 
+                Case ProductionIndex.Cina
                     ' <CINA> ::= <ImagenN> <coma> <CINA> 
 
-                Case ProductionIndex.Cina2                 
+                Case ProductionIndex.Cina2
                     ' <CINA> ::= <ImagenDis> <coma> <CINA> 
 
-                Case ProductionIndex.Cina3                 
+                Case ProductionIndex.Cina3
                     ' <CINA> ::= <SonidoDis> <coma> <CINA> 
 
-                Case ProductionIndex.Cina4                 
+                Case ProductionIndex.Cina4
                     ' <CINA> ::= <Vida> <coma> <CINA> 
 
-                Case ProductionIndex.Cina5                 
+                Case ProductionIndex.Cina5
                     ' <CINA> ::= <ataque> <coma> <CINA> 
 
-                Case ProductionIndex.Cina6                 
+                Case ProductionIndex.Cina6
                     ' <CINA> ::= <ImagenN> <cierre> 
 
-                Case ProductionIndex.Cina7                 
+                Case ProductionIndex.Cina7
                     ' <CINA> ::= <ImagenDis> <cierre> 
 
-                Case ProductionIndex.Cina8                 
+                Case ProductionIndex.Cina8
                     ' <CINA> ::= <SonidoDis> <cierre> 
 
-                Case ProductionIndex.Cina9                 
+                Case ProductionIndex.Cina9
                     ' <CINA> ::= <Vida> <cierre> 
 
-                Case ProductionIndex.Cina10                 
+                Case ProductionIndex.Cina10
                     ' <CINA> ::= <ataque> <cierre> 
 
-                Case ProductionIndex.Inicionave_Lbracket_Div_Rbracket                 
+                Case ProductionIndex.Inicionave_Lbracket_Div_Rbracket
                     ' <InicioNave> ::= '[' <RNave> '/' <ID> ']' 
 
-                Case ProductionIndex.Imagenn_Eq                 
+                Case ProductionIndex.Imagenn_Eq
                     ' <ImagenN> ::= <RImagen_N> '=' <Ruta> 
 
-                Case ProductionIndex.Imagendis_Eq                 
+                Case ProductionIndex.Imagendis_Eq
                     ' <ImagenDis> ::= <RImagen_Dis> '=' <Ruta> 
 
-                Case ProductionIndex.Sonidodis_Eq                 
+                Case ProductionIndex.Sonidodis_Eq
                     ' <SonidoDis> ::= <RSonido_Dis> '=' <Ruta> 
 
-                Case ProductionIndex.Vida_Eq_Entero                 
+                Case ProductionIndex.Vida_Eq_Entero
                     ' <Vida> ::= <RVida> '=' Entero 
 
-                Case ProductionIndex.Ataque_Eq_Entero                 
+                Case ProductionIndex.Ataque_Eq_Entero
                     ' <ataque> ::= <Rataque> '=' Entero 
 
-                Case ProductionIndex.Cuerpodefensas                 
+                Case ProductionIndex.Cuerpodefensas
                     ' <CuerpoDefensas> ::= <CuerpoDefensas> <CDefensa> 
 
-                Case ProductionIndex.Cuerpodefensas2                 
+                Case ProductionIndex.Cuerpodefensas2
                     ' <CuerpoDefensas> ::= <CDefensa> 
 
-                Case ProductionIndex.Cdefensa                 
+                Case ProductionIndex.Cdefensa
                     ' <CDefensa> ::= <InicioDefensa> <CIDEF> 
 
-                Case ProductionIndex.Cidef                 
+                Case ProductionIndex.Cidef
                     ' <CIDEF> ::= <imagenDef> <coma> <CIDEF> 
 
-                Case ProductionIndex.Cidef2                 
+                Case ProductionIndex.Cidef2
                     ' <CIDEF> ::= <Proteccion> <coma> <CIDEF> 
 
-                Case ProductionIndex.Cidef3                 
+                Case ProductionIndex.Cidef3
                     ' <CIDEF> ::= <imagenDef> <cierre> 
 
-                Case ProductionIndex.Cidef4                 
+                Case ProductionIndex.Cidef4
                     ' <CIDEF> ::= <Proteccion> <cierre> 
 
-                Case ProductionIndex.Iniciodefensa_Lbracket_Div_Rbracket                 
+                Case ProductionIndex.Iniciodefensa_Lbracket_Div_Rbracket
                     ' <InicioDefensa> ::= '[' <RDefensa> '/' <ID> ']' 
 
-                Case ProductionIndex.Imagendef_Eq                 
+                Case ProductionIndex.Imagendef_Eq
                     ' <imagenDef> ::= <RImagen_Def> '=' <Ruta> 
 
-                Case ProductionIndex.Proteccion_Eq_Entero                 
+                Case ProductionIndex.Proteccion_Eq_Entero
                     ' <Proteccion> ::= <RProteccion> '=' Entero 
 
-                Case ProductionIndex.Enemigo                 
+                Case ProductionIndex.Enemigo
                     ' <Enemigo> ::= <Enemigo> <CEnemigo> 
 
-                Case ProductionIndex.Enemigo2                 
+                Case ProductionIndex.Enemigo2
                     ' <Enemigo> ::= <CEnemigo> 
 
-                Case ProductionIndex.Cenemigo                 
+                Case ProductionIndex.Cenemigo
                     ' <CEnemigo> ::= <InicioEnemigo> <CIENEMI> 
 
-                Case ProductionIndex.Cienemi                 
+                Case ProductionIndex.Cienemi
                     ' <CIENEMI> ::= <nombre> <coma> <CIENEMI> 
 
-                Case ProductionIndex.Cienemi2                 
+                Case ProductionIndex.Cienemi2
                     ' <CIENEMI> ::= <ImagenE> <coma> <CIENEMI> 
 
-                Case ProductionIndex.Cienemi3                 
+                Case ProductionIndex.Cienemi3
                     ' <CIENEMI> ::= <ImagenDis> <coma> <CIENEMI> 
 
-                Case ProductionIndex.Cienemi4                 
+                Case ProductionIndex.Cienemi4
                     ' <CIENEMI> ::= <SonidoDis> <coma> <CIENEMI> 
 
-                Case ProductionIndex.Cienemi5                 
+                Case ProductionIndex.Cienemi5
                     ' <CIENEMI> ::= <Vida> <coma> <CIENEMI> 
 
-                Case ProductionIndex.Cienemi6                 
+                Case ProductionIndex.Cienemi6
                     ' <CIENEMI> ::= <ataque> <coma> <CIENEMI> 
 
-                Case ProductionIndex.Cienemi7                 
+                Case ProductionIndex.Cienemi7
                     ' <CIENEMI> ::= <frecuencia> <coma> <CIENEMI> 
 
-                Case ProductionIndex.Cienemi8                 
+                Case ProductionIndex.Cienemi8
                     ' <CIENEMI> ::= <velocidad> <coma> <CIENEMI> 
 
-                Case ProductionIndex.Cienemi9                 
+                Case ProductionIndex.Cienemi9
                     ' <CIENEMI> ::= <punteo> <coma> <CIENEMI> 
 
-                Case ProductionIndex.Cienemi10                 
+                Case ProductionIndex.Cienemi10
                     ' <CIENEMI> ::= <nombre> <cierre> 
 
-                Case ProductionIndex.Cienemi11                 
+                Case ProductionIndex.Cienemi11
                     ' <CIENEMI> ::= <ImagenE> <cierre> 
 
-                Case ProductionIndex.Cienemi12                 
+                Case ProductionIndex.Cienemi12
                     ' <CIENEMI> ::= <ImagenDis> <cierre> 
 
-                Case ProductionIndex.Cienemi13                 
+                Case ProductionIndex.Cienemi13
                     ' <CIENEMI> ::= <SonidoDis> <cierre> 
 
-                Case ProductionIndex.Cienemi14                 
+                Case ProductionIndex.Cienemi14
                     ' <CIENEMI> ::= <Vida> <cierre> 
 
-                Case ProductionIndex.Cienemi15                 
+                Case ProductionIndex.Cienemi15
                     ' <CIENEMI> ::= <ataque> <cierre> 
 
-                Case ProductionIndex.Cienemi16                 
+                Case ProductionIndex.Cienemi16
                     ' <CIENEMI> ::= <frecuencia> <cierre> 
 
-                Case ProductionIndex.Cienemi17                 
+                Case ProductionIndex.Cienemi17
                     ' <CIENEMI> ::= <velocidad> <cierre> 
 
-                Case ProductionIndex.Cienemi18                 
+                Case ProductionIndex.Cienemi18
                     ' <CIENEMI> ::= <punteo> <cierre> 
 
-                Case ProductionIndex.Inicioenemigo_Lbracket_Div_Rbracket                 
+                Case ProductionIndex.Inicioenemigo_Lbracket_Div_Rbracket
                     ' <InicioEnemigo> ::= '[' <Renemigo> '/' <ID> ']' 
 
-                Case ProductionIndex.Nombre_Eq_Cadena                 
+                Case ProductionIndex.Nombre_Eq_Cadena
                     ' <nombre> ::= <Rnombre> '=' Cadena 
 
-                Case ProductionIndex.Imagene_Eq                 
+                Case ProductionIndex.Imagene_Eq
                     ' <ImagenE> ::= <RImagenE> '=' <Ruta> 
 
-                Case ProductionIndex.Frecuencia_Eq                 
+                Case ProductionIndex.Frecuencia_Eq
                     ' <frecuencia> ::= <Rfrecuencia> '=' <E> 
 
-                Case ProductionIndex.Velocidad_Eq                 
+                Case ProductionIndex.Velocidad_Eq
                     ' <velocidad> ::= <RVelocidad> '=' <E> 
 
                 Case ProductionIndex.Punteo_Eq
@@ -625,7 +625,7 @@ Module MyParser
                     ' <ID> ::= identificador 
 
 
-                Case ProductionIndex.Coma_Comma                 
+                Case ProductionIndex.Coma_Comma
                     ' <coma> ::= ',' 
 
                 Case ProductionIndex.Cierre_Dollar
@@ -655,77 +655,84 @@ Module MyParser
                     opcion = 3
                     ' <RFondo> ::= fondo 
 
-                Case ProductionIndex.Rimagene_Imagen_enemigo                 
+                Case ProductionIndex.Rimagene_Imagen_enemigo
                     ' <RImagenE> ::= 'imagen_enemigo' 
 
-                Case ProductionIndex.Rimagen_def_Imagen_defensa                 
+                Case ProductionIndex.Rimagen_def_Imagen_defensa
                     ' <RImagen_Def> ::= 'imagen_defensa' 
 
-                Case ProductionIndex.Rimagen_dis_Imagen_disparo                 
+                Case ProductionIndex.Rimagen_dis_Imagen_disparo
                     ' <RImagen_Dis> ::= 'imagen_disparo' 
 
-                Case ProductionIndex.Rimagen_n_Imagen_nave                 
+                Case ProductionIndex.Rimagen_n_Imagen_nave
                     ' <RImagen_N> ::= 'imagen_nave' 
 
-                Case ProductionIndex.Rnave_Naves                 
+                Case ProductionIndex.Rnave_Naves
                     ' <RNave> ::= naves 
 
-                Case ProductionIndex.Rsonido_Sonido                 
+                Case ProductionIndex.Rsonido_Sonido
                     ' <RSonido> ::= sonido 
 
-                Case ProductionIndex.Rsonido_dis_Sonido_disparo                 
+                Case ProductionIndex.Rsonido_dis_Sonido_disparo
                     ' <RSonido_Dis> ::= 'sonido_disparo' 
 
-                Case ProductionIndex.Rvida_Vida                 
+                Case ProductionIndex.Rvida_Vida
                     ' <RVida> ::= vida 
 
-                Case ProductionIndex.Rataque_Ataque                 
+                Case ProductionIndex.Rataque_Ataque
                     ' <Rataque> ::= ataque 
 
-                Case ProductionIndex.Rproteccion_Proteccion                 
+                Case ProductionIndex.Rproteccion_Proteccion
                     ' <RProteccion> ::= proteccion 
 
-                Case ProductionIndex.Renemigo_Enemigos                 
+                Case ProductionIndex.Renemigo_Enemigos
                     ' <Renemigo> ::= enemigos 
 
-                Case ProductionIndex.Rnombre_Nombre                 
+                Case ProductionIndex.Rnombre_Nombre
                     ' <Rnombre> ::= nombre 
 
-                Case ProductionIndex.Rfrecuencia_Frecuencia                 
+                Case ProductionIndex.Rfrecuencia_Frecuencia
                     ' <Rfrecuencia> ::= frecuencia 
 
-                Case ProductionIndex.Rvelocidad_Velocidad                 
+                Case ProductionIndex.Rvelocidad_Velocidad
                     ' <RVelocidad> ::= velocidad 
 
-                Case ProductionIndex.Rpunteo_Punteo                 
+                Case ProductionIndex.Rpunteo_Punteo
                     ' <Rpunteo> ::= punteo 
 
-                Case ProductionIndex.E_Plus                 
+                Case ProductionIndex.E_Plus
                     ' <E> ::= <E> '+' <MULT> 
 
-                Case ProductionIndex.E_Minus                 
+                Case ProductionIndex.E_Minus
                     ' <E> ::= <E> '-' <MULT> 
 
-                Case ProductionIndex.E                 
+                Case ProductionIndex.E
                     ' <E> ::= <MULT> 
 
-                Case ProductionIndex.Mult_Times                 
+                Case ProductionIndex.Mult_Times
                     ' <MULT> ::= <MULT> '*' <VALOR> 
 
-                Case ProductionIndex.Mult_Div                 
+                Case ProductionIndex.Mult_Div
                     ' <MULT> ::= <MULT> '/' <VALOR> 
 
-                Case ProductionIndex.Mult                 
+                Case ProductionIndex.Mult
                     ' <MULT> ::= <VALOR> 
 
-                Case ProductionIndex.Valor_Entero                 
+                Case ProductionIndex.Valor_Entero
                     ' <VALOR> ::= Entero 
 
-                Case ProductionIndex.Valor_Lparen_Rparen                 
+                Case ProductionIndex.Valor_Lparen_Rparen
                     ' <VALOR> ::= '(' <E> ')' 
 
             End Select
-        End With     
+        End With
+        Dim a As String
+        If (a <> "") Then
+            a = a + "," + Reduction.Parent.TableIndex.ToString
+            System.Console.WriteLine(a)
+
+
+        End If
 
         Return Result
     End Function
