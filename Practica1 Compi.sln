@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Practica1 Compi", "Practica1 Compi\Practica1 Compi.vbproj", "{92BA7389-5918-416F-8594-FF54A53EF508}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EA7C9E5D-82C5-4F86-A466-8E0EF931D624}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{92BA7389-5918-416F-8594-FF54A53EF508}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92BA7389-5918-416F-8594-FF54A53EF508}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92BA7389-5918-416F-8594-FF54A53EF508}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92BA7389-5918-416F-8594-FF54A53EF508}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
