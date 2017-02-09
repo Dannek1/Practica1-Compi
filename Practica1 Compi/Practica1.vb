@@ -619,8 +619,11 @@ Module MyParser
                 Case ProductionIndex.Id_Identificador
                     If (opcion = 1) Then
                         Nombre_Juego = Reduction.Item(0).Data
-                    ElseIf (opcion = 2) Then
+                    ElseIf (opcion = 2 Or opcion = 3) Then
                         tempF.Nombre = Reduction.Item(0).Data
+
+                    ElseIf (opcion = 5) Then
+                        tempN.Nombre = Reduction.Item(0).Data
 
                     End If
                     ' <ID> ::= identificador 
@@ -631,7 +634,7 @@ Module MyParser
 
                 Case ProductionIndex.Cierre_Dollar
 
-                    If (opcion = 3 Or opcion = 4) Then
+                    If (opcion = 3 Or opcion = 4 Or opcion = 2) Then
                         LFondos.Insertar(tempF)
                     End If
                     ' <cierre> ::= '$' 
@@ -657,6 +660,7 @@ Module MyParser
                     ' <REscenario> ::= escenarios 
 
                 Case ProductionIndex.Rfondo_Fondo
+
                     opcion = 3
                     ' <RFondo> ::= fondo 
 
@@ -673,10 +677,13 @@ Module MyParser
                     ' <RImagen_N> ::= 'imagen_nave' 
 
                 Case ProductionIndex.Rnave_Naves
+                    opcion = 5
+                    tempN = New Naves
+
                     ' <RNave> ::= naves 
 
                 Case ProductionIndex.Rsonido_Sonido
-                    If (opcion = 3) Then
+                    If (opcion = 3 Or opcion=2) Then
                         opcion = 4
                     End If
                     ' <RSonido> ::= sonido 
