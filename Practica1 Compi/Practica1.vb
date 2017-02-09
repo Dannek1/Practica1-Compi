@@ -337,6 +337,7 @@ Module MyParser
                     ' <Inicio> ::= '[' <RInicio> '/' <ID> ']' 
 
                 Case ProductionIndex.Rinicio_Inicio
+                    opcion = 1
                     ' <RInicio> ::= Inicio 
 
                 Case ProductionIndex.Fin_Lbracket_Div_Rbracket
@@ -629,6 +630,10 @@ Module MyParser
                     ' <coma> ::= ',' 
 
                 Case ProductionIndex.Cierre_Dollar
+
+                    If (opcion = 3 Or opcion = 4) Then
+                        LFondos.Insertar(tempF)
+                    End If
                     ' <cierre> ::= '$' 
 
                 Case ProductionIndex.Ruta_Ruta
@@ -671,6 +676,9 @@ Module MyParser
                     ' <RNave> ::= naves 
 
                 Case ProductionIndex.Rsonido_Sonido
+                    If (opcion = 3) Then
+                        opcion = 4
+                    End If
                     ' <RSonido> ::= sonido 
 
                 Case ProductionIndex.Rsonido_dis_Sonido_disparo

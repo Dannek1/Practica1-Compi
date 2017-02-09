@@ -7,17 +7,17 @@
 
 
     Public Sub Insertar(nuevo As Naves)
-        If (cabeza.Equals(Nothing)) Then
+        If (cabeza Is Nothing) Then
 
             cabeza = nuevo
 
-        ElseIf (ultimo.Equals(Nothing)) Then
+        ElseIf (ultimo Is Nothing) Then
 
             ultimo = nuevo
             cabeza.Siguiente = ultimo
             ultimo.anterior = cabeza
 
-        ElseIf (Aux.Equals(Nothing)) Then
+        ElseIf (Aux Is Nothing) Then
 
             Aux = nuevo
             ultimo.Siguiente = Aux
