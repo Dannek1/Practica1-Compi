@@ -1,0 +1,211 @@
+	"Case Sensitive" = False
+	"Start Symbol" = <S>
+
+
+	!----Terminales
+	{String Char}={Printable}-[,]
+	Entero ={Number}+
+	Ruta =('"'{Letter}':\'{String Char}+'"')|('" '{Letter}':\'{String Char}+'"')
+	identificador ={Letter}{Alphanumeric}*
+	Cadena ='"'{Alphanumeric}+'"'
+
+
+	Comment Start = '/*'
+	Comment End   = '*/'
+	Comment Line  = '//' 
+
+	<S> ::= <Inicio> <Cuerpo> 
+
+	<Inicio> ::= '[' <RInicio> '/' <ID> ']'
+
+	<RInicio> ::= 'Inicio'
+
+	<Fin> ::= '[' <RFin> '/' <ID> ']'
+
+	<RFin> ::= 'fin'
+
+			 
+
+	<Cuerpo> ::=  <CuerpoEscenarios> <CuerpoNaves> <CuerpoDefensas> <Enemigo> <Fin>
+			  |  <CuerpoEscenarios>  <CuerpoNaves>   <Enemigo>   <CuerpoDefensas> <Fin>
+			  |  <CuerpoEscenarios>  <CuerpoDefensas>    <CuerpoNaves>   <Enemigo> <Fin>
+			  |  <CuerpoEscenarios>  <CuerpoDefensas>    <Enemigo>   <CuerpoNaves> <Fin>
+			  |  <CuerpoEscenarios>  <Enemigo>   <CuerpoNaves>   <CuerpoDefensas> <Fin>
+			  |  <CuerpoEscenarios>  <Enemigo>   <CuerpoDefensas>    <CuerpoNaves> <Fin>
+			  |  <CuerpoNaves>   <CuerpoEscenarios>  <CuerpoDefensas>    <Enemigo> <Fin>
+			  |  <CuerpoNaves>   <CuerpoEscenarios>  <Enemigo>   <CuerpoDefensas> <Fin>
+			  |  <CuerpoNaves>   <CuerpoDefensas>    <CuerpoEscenarios>  <Enemigo> <Fin>
+			  |  <CuerpoNaves>   <CuerpoDefensas>    <Enemigo>   <CuerpoEscenarios> <Fin>
+			  |  <CuerpoNaves>   <Enemigo>   <CuerpoEscenarios>  <CuerpoDefensas> <Fin>
+			  |  <CuerpoNaves>   <Enemigo>   <CuerpoDefensas>    <CuerpoEscenarios> <Fin>
+			  |  <CuerpoDefensas>    <CuerpoEscenarios>  <CuerpoNaves>   <Enemigo> <Fin>
+			  |  <CuerpoDefensas>    <CuerpoEscenarios>  <Enemigo>   <CuerpoNaves> <Fin>
+			  |  <CuerpoDefensas>    <CuerpoNaves>   <CuerpoEscenarios>  <Enemigo> <Fin>
+			  |  <CuerpoDefensas>    <CuerpoNaves>   <Enemigo>   <CuerpoEscenarios> <Fin>
+			  |  <CuerpoDefensas>    <Enemigo>   <CuerpoEscenarios>  <CuerpoNaves> <Fin>
+			  |  <CuerpoDefensas>    <Enemigo>   <CuerpoNaves>   <CuerpoEscenarios> <Fin>
+			  |  <Enemigo>   <CuerpoEscenarios>  <CuerpoNaves>   <CuerpoDefensas> <Fin>
+			  |  <Enemigo>   <CuerpoEscenarios>  <CuerpoDefensas>    <CuerpoNaves> <Fin>
+			  |  <Enemigo>   <CuerpoNaves>   <CuerpoEscenarios>  <CuerpoDefensas> <Fin>
+			  |  <Enemigo>   <CuerpoNaves>   <CuerpoDefensas>    <CuerpoEscenarios> <Fin>
+			  |  <Enemigo>   <CuerpoDefensas>    <CuerpoEscenarios>  <CuerpoNaves> <Fin>
+			  |  <Enemigo>   <CuerpoDefensas>    <CuerpoNaves>   <CuerpoEscenarios> 
+
+
+
+	<CuerpoEscenarios> ::= <CuerpoEscenarios> <CEscenario>
+					|<CEscenario>
+						
+	<CEscenario> ::= <InicioEscenario> <CIES>
+
+	<CIES>::= <fondo> <coma> <CIES>
+		|<sonido> <coma> <CIES>
+		|<fondo> <cierre>
+		|<sonido> <cierre>   
+
+	<InicioEscenario> ::= '[' <REscenario> '/' <ID> ']'
+
+	<fondo> ::= <RFondo> '=' <Ruta>
+
+	<sonido> ::= <RSonido> '=' <Ruta>
+
+	<CuerpoNaves> ::= <CuerpoNaves> <CNave>
+				|<CNave>
+
+	<CNave> ::= <InicioNave> <CINA>
+
+	<CINA> ::= <ImagenN> <coma> <CINA>
+			|<ImagenDis> <coma> <CINA>
+			|<SonidoDis> <coma> <CINA>
+			|<vida> <coma> <CINA>
+			|<ataque> <coma> <CINA>
+			|<ImagenN> <cierre>
+			|<ImagenDis> <cierre>
+			|<SonidoDis> <cierre>
+			|<vida> <cierre>
+			|<ataque> <cierre>
+			
+
+	<InicioNave> ::= '[' <RNave> '/' <ID> ']'
+
+	<ImagenN> ::= <RImagen_N> '=' <Ruta>
+
+	<ImagenDis> ::= <RImagen_Dis> '=' <Ruta>
+
+	<SonidoDis> ::= <RSonido_Dis> '=' <Ruta>
+
+	<Vida> ::= <RVida> '=' <Entero>
+
+	<ataque> ::= <Rataque> '=' <Entero>
+
+	<CuerpoDefensas> ::= <CuerpoDefensas> <CDefensa>
+					| <CDefensa>
+			
+	<CDefensa> ::= <InicioDefensa> <CIDEF>
+
+
+	<CIDEF>::= <imagenDef> <coma> <CIDEF>
+		|<Proteccion> <coma> <CIDEF>
+		|<imagenDef> <cierre>
+		|<Proteccion> <cierre>   
+
+	<InicioDefensa> ::= '[' <RDefensa> '/' <ID>  ']'
+
+	<imagenDef> ::= <RImagen_Def> '=' <Ruta>
+
+	<Proteccion> ::= <RProteccion> '=' <Entero>
+
+	<Enemigo> ::= <Enemigo> <CEnemigo>
+			| <CEnemigo>
+			
+	<CEnemigo> ::= <InicioEnemigo> <CIENEMI>
+
+	<CIENEMI> ::= <nombre> <coma> <CIENEMI>
+				|<ImagenE> <coma> <CIENEMI>
+				|<ImagenDis> <coma> <CIENEMI>
+				|<SonidoDis> <coma> <CIENEMI>
+				|<vida> <coma> <CIENEMI>
+				|<ataque> <coma> <CIENEMI>
+				|<frecuencia> <coma> <CIENEMI>
+				|<velocidad> <coma> <CIENEMI>
+				|<punteo> <coma> <CIENEMI>
+				|<nombre>  <cierre>
+				|<ImagenE>  <cierre>
+				|<ImagenDis>  <cierre>
+				|<SonidoDis>  <cierre>
+				|<vida>  <cierre>
+				|<ataque>  <cierre>
+				|<frecuencia>  <cierre>
+				|<velocidad>  <cierre>
+				|<punteo>  <cierre>
+				
+
+	<InicioEnemigo> ::= '[' <Renemigo> '/' <ID> ']'
+
+	<nombre> ::= <Rnombre> '=' Cadena
+
+	<ImagenE> ::= <RImagenE> '=' <Ruta>
+
+	<frecuencia> ::= <Rfrecuencia> '=' <E> 
+
+	<velocidad> ::= <RVelocidad> '=' <E> 
+
+	<punteo> ::= <Rpunteo> '=' <E> 
+
+	<ID> ::= identificador
+
+	<coma>::= ','
+
+	<cierre>::='$'
+
+	<Ruta>::=Ruta
+
+	<RDefensa>::= 'defensas'
+
+	<REscenario>::= 'escenarios'
+
+	<RFondo>::= 'fondo'
+
+	<RImagenE>::='imagen_enemigo'
+
+	<RImagen_Def>::='imagen_defensa'
+
+	<RImagen_Dis>::='imagen_disparo'
+
+	<RImagen_N>::='imagen_nave'
+
+	<RNave>::='naves'
+
+	<RSonido>::='sonido'
+
+	<RSonido_Dis>::='sonido_disparo'
+
+	<RVida>::= 'vida'
+
+	<Rataque>::='ataque'
+
+	<RProteccion>::='proteccion'
+
+	<Renemigo>::= 'enemigos'
+
+	<Rnombre>::='nombre'
+
+	<Rfrecuencia>::= 'frecuencia'
+
+	<RVelocidad>::= 'velocidad'
+
+	<Rpunteo>::='punteo'
+	
+	<Entero>::=Entero
+
+	<E> ::= <E> '+' <MULT>
+		 | <E> '-' <MULT> 
+		 |<MULT>
+		 
+		 
+	<MULT> ::= <MULT> '*' <VALOR> 
+			|<MULT> '/' <VALOR>
+			|<VALOR>
+			
+	<VALOR> ::=  <Entero>
+			 |'(' <E> ')'
