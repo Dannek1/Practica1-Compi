@@ -139,4 +139,35 @@
 
         End While
     End Sub
+
+    Private Sub BuscarFondos()
+        Dim seguir As Boolean = True
+
+        LFondos.Aux = LFondos.cabeza
+
+        While (seguir)
+            If (LFondos.Aux.Nombre.Equals(ComboFondos.Text)) Then
+                seguir = False
+
+                Dim Imagen As Image = Image.FromFile(LFondos.Aux.fondo)
+                ImgFondos.Image = Imagen
+
+
+            ElseIf (LFondos.Aux.Siguiente Is Nothing) Then
+                seguir = False
+            Else
+                LFondos.Aux = LFondos.Aux.Siguiente
+            End If
+
+
+        End While
+    End Sub
+
+    Private Sub ComboFondos_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboFondos.SelectedIndexChanged
+        BuscarFondos()
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        ComboFondos.Enabled = False
+    End Sub
 End Class

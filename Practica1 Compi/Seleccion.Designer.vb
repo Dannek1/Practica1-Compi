@@ -28,7 +28,7 @@ Partial Class Seleccion
         Me.ComboNaves = New System.Windows.Forms.ComboBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.Button2 = New System.Windows.Forms.Button()
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
+        Me.ImgFondos = New System.Windows.Forms.PictureBox()
         Me.ComboFondos = New System.Windows.Forms.ComboBox()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
@@ -36,7 +36,7 @@ Partial Class Seleccion
         Me.GroupBox1.SuspendLayout()
         CType(Me.ImgNaves, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ImgFondos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupBox1
@@ -80,7 +80,7 @@ Partial Class Seleccion
         'GroupBox2
         '
         Me.GroupBox2.Controls.Add(Me.Button2)
-        Me.GroupBox2.Controls.Add(Me.PictureBox2)
+        Me.GroupBox2.Controls.Add(Me.ImgFondos)
         Me.GroupBox2.Controls.Add(Me.ComboFondos)
         Me.GroupBox2.Location = New System.Drawing.Point(252, 46)
         Me.GroupBox2.Name = "GroupBox2"
@@ -98,13 +98,14 @@ Partial Class Seleccion
         Me.Button2.Text = "Elegir"
         Me.Button2.UseVisualStyleBackColor = True
         '
-        'PictureBox2
+        'ImgFondos
         '
-        Me.PictureBox2.Location = New System.Drawing.Point(7, 58)
-        Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(168, 156)
-        Me.PictureBox2.TabIndex = 1
-        Me.PictureBox2.TabStop = False
+        Me.ImgFondos.Location = New System.Drawing.Point(7, 58)
+        Me.ImgFondos.Name = "ImgFondos"
+        Me.ImgFondos.Size = New System.Drawing.Size(168, 156)
+        Me.ImgFondos.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.ImgFondos.TabIndex = 1
+        Me.ImgFondos.TabStop = False
         '
         'ComboFondos
         '
@@ -159,7 +160,7 @@ Partial Class Seleccion
         Me.GroupBox1.ResumeLayout(False)
         CType(Me.ImgNaves, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox2.ResumeLayout(False)
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ImgFondos, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -171,7 +172,7 @@ Partial Class Seleccion
     Friend WithEvents ComboNaves As ComboBox
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents Button2 As Button
-    Friend WithEvents PictureBox2 As PictureBox
+    Friend WithEvents ImgFondos As PictureBox
     Friend WithEvents ComboFondos As ComboBox
     Friend WithEvents Button3 As Button
     Friend WithEvents Button4 As Button
