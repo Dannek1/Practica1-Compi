@@ -24,7 +24,7 @@ Partial Class Seleccion
     Private Sub InitializeComponent()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.ImgNaves = New System.Windows.Forms.PictureBox()
         Me.ComboNaves = New System.Windows.Forms.ComboBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.Button2 = New System.Windows.Forms.Button()
@@ -34,7 +34,7 @@ Partial Class Seleccion
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ImgNaves, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -42,7 +42,7 @@ Partial Class Seleccion
         'GroupBox1
         '
         Me.GroupBox1.Controls.Add(Me.Button1)
-        Me.GroupBox1.Controls.Add(Me.PictureBox1)
+        Me.GroupBox1.Controls.Add(Me.ImgNaves)
         Me.GroupBox1.Controls.Add(Me.ComboNaves)
         Me.GroupBox1.Location = New System.Drawing.Point(34, 46)
         Me.GroupBox1.Name = "GroupBox1"
@@ -60,13 +60,14 @@ Partial Class Seleccion
         Me.Button1.Text = "Elegir"
         Me.Button1.UseVisualStyleBackColor = True
         '
-        'PictureBox1
+        'ImgNaves
         '
-        Me.PictureBox1.Location = New System.Drawing.Point(7, 58)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(168, 156)
-        Me.PictureBox1.TabIndex = 1
-        Me.PictureBox1.TabStop = False
+        Me.ImgNaves.Location = New System.Drawing.Point(7, 58)
+        Me.ImgNaves.Name = "ImgNaves"
+        Me.ImgNaves.Size = New System.Drawing.Size(168, 156)
+        Me.ImgNaves.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.ImgNaves.TabIndex = 1
+        Me.ImgNaves.TabStop = False
         '
         'ComboNaves
         '
@@ -156,7 +157,7 @@ Partial Class Seleccion
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Seleccion"
         Me.GroupBox1.ResumeLayout(False)
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ImgNaves, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox2.ResumeLayout(False)
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -166,7 +167,7 @@ Partial Class Seleccion
 
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents Button1 As Button
-    Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents ImgNaves As PictureBox
     Friend WithEvents ComboNaves As ComboBox
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents Button2 As Button

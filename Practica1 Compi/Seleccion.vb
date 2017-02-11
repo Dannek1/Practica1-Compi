@@ -1,6 +1,6 @@
 ﻿Public Class Seleccion
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-
+        ComboNaves.Enabled = False
     End Sub
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
@@ -113,5 +113,30 @@
         Return respuesta
     End Function
 
+    Private Sub ComboNaves_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboNaves.SelectedIndexChanged
+        BuscarNave()
+    End Sub
 
+    Private Sub BuscarNave()
+        Dim seguir As Boolean = True
+
+        LNaves.Aux = LNaves.cabeza
+
+        While (seguir)
+            If (LNaves.Aux.Nombre.Equals(ComboNaves.Text)) Then
+                seguir = False
+
+                Dim Imagen As Image = Image.FromFile(LNaves.Aux.Rnave)
+                ImgNaves.Image = Imagen
+
+
+            ElseIf (LNaves.Aux.Siguiente Is Nothing) Then
+                seguir = False
+            Else
+                LNaves.Aux = LNaves.Aux.Siguiente
+            End If
+
+
+        End While
+    End Sub
 End Class
