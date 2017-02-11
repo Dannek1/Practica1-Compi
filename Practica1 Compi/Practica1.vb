@@ -4,18 +4,11 @@ Option Explicit On
 Option Strict Off
 
 Imports System.IO
-Imports System.Windows.Forms
+Imports System.Windows.Forms;
 
 
 Module MyParser
     Private Parser As New GOLD.Parser
-    Dim opcion As Integer
-    Dim tempF As Fondos
-    Dim tempE As Enemigos
-    Dim tempN As Naves
-    Dim tempD As Defensas
-    Dim Seleccion As Seleccion
-
 
     Private Enum SymbolIndex
         [Eof] = 0                                 ' (EOF)
@@ -62,67 +55,68 @@ Module MyParser
         [Velocidad] = 41                          ' velocidad
         [Vida] = 42                               ' vida
         [Ataque2] = 43                            ' <ataque>
-        [Cdefensa] = 44                           ' <CDefensa>
-        [Cenemigo] = 45                           ' <CEnemigo>
-        [Cescenario] = 46                         ' <CEscenario>
-        [Cidef] = 47                              ' <CIDEF>
-        [Cienemi] = 48                            ' <CIENEMI>
-        [Cierre] = 49                             ' <cierre>
-        [Cies] = 50                               ' <CIES>
-        [Cina] = 51                               ' <CINA>
-        [Cnave] = 52                              ' <CNave>
-        [Coma] = 53                               ' <coma>
-        [Cuerpo] = 54                             ' <Cuerpo>
-        [Cuerpodefensas] = 55                     ' <CuerpoDefensas>
-        [Cuerpoescenarios] = 56                   ' <CuerpoEscenarios>
-        [Cuerponaves] = 57                        ' <CuerpoNaves>
-        [E] = 58                                  ' <E>
-        [Enemigo] = 59                            ' <Enemigo>
-        [Entero2] = 60                            ' <Entero>
-        [Fin2] = 61                               ' <Fin>
-        [Fondo2] = 62                             ' <fondo>
-        [Frecuencia2] = 63                        ' <frecuencia>
-        [Id] = 64                                 ' <ID>
-        [Imagendef] = 65                          ' <imagenDef>
-        [Imagendis] = 66                          ' <ImagenDis>
-        [Imagene] = 67                            ' <ImagenE>
-        [Imagenn] = 68                            ' <ImagenN>
-        [Inicio2] = 69                            ' <Inicio>
-        [Iniciodefensa] = 70                      ' <InicioDefensa>
-        [Inicioenemigo] = 71                      ' <InicioEnemigo>
-        [Inicioescenario] = 72                    ' <InicioEscenario>
-        [Inicionave] = 73                         ' <InicioNave>
-        [Mult] = 74                               ' <MULT>
-        [Nombre2] = 75                            ' <nombre>
-        [Proteccion2] = 76                        ' <Proteccion>
-        [Punteo2] = 77                            ' <punteo>
-        [Rataque] = 78                            ' <Rataque>
-        [Rdefensa] = 79                           ' <RDefensa>
-        [Renemigo] = 80                           ' <Renemigo>
-        [Rescenario] = 81                         ' <REscenario>
-        [Rfin] = 82                               ' <RFin>
-        [Rfondo] = 83                             ' <RFondo>
-        [Rfrecuencia] = 84                        ' <Rfrecuencia>
-        [Rimagen_def] = 85                        ' <RImagen_Def>
-        [Rimagen_dis] = 86                        ' <RImagen_Dis>
-        [Rimagen_n] = 87                          ' <RImagen_N>
-        [Rimagene] = 88                           ' <RImagenE>
-        [Rinicio] = 89                            ' <RInicio>
-        [Rnave] = 90                              ' <RNave>
-        [Rnombre] = 91                            ' <Rnombre>
-        [Rproteccion] = 92                        ' <RProteccion>
-        [Rpunteo] = 93                            ' <Rpunteo>
-        [Rsonido] = 94                            ' <RSonido>
-        [Rsonido_dis] = 95                        ' <RSonido_Dis>
-        [Ruta2] = 96                              ' <Ruta>
-        [Rvelocidad] = 97                         ' <RVelocidad>
-        [Rvida] = 98                              ' <RVida>
-        [S] = 99                                  ' <S>
-        [Sonido2] = 100                           ' <sonido>
-        [Sonidodis] = 101                         ' <SonidoDis>
-        [Valor] = 102                             ' <VALOR>
-        [Velocidad2] = 103                        ' <velocidad>
-        [Vida2] = 104                             ' <Vida>
+        [Cadena2] = 44                            ' <Cadena>
+        [Cdefensa] = 45                           ' <CDefensa>
+        [Cenemigo] = 46                           ' <CEnemigo>
+        [Cescenario] = 47                         ' <CEscenario>
+        [Cidef] = 48                              ' <CIDEF>
+        [Cienemi] = 49                            ' <CIENEMI>
+        [Cierre] = 50                             ' <cierre>
+        [Cies] = 51                               ' <CIES>
+        [Cina] = 52                               ' <CINA>
+        [Cnave] = 53                              ' <CNave>
+        [Coma] = 54                               ' <coma>
+        [Cuerpo] = 55                             ' <Cuerpo>
+        [Cuerpodefensas] = 56                     ' <CuerpoDefensas>
+        [Cuerpoescenarios] = 57                   ' <CuerpoEscenarios>
+        [Cuerponaves] = 58                        ' <CuerpoNaves>
+        [E] = 59                                  ' <E>
+        [Enemigo] = 60                            ' <Enemigo>
+        [Entero2] = 61                            ' <Entero>
+        [Fin2] = 62                               ' <Fin>
+        [Fondo2] = 63                             ' <fondo>
+        [Frecuencia2] = 64                        ' <frecuencia>
+        [Id] = 65                                 ' <ID>
+        [Imagendef] = 66                          ' <imagenDef>
+        [Imagendis] = 67                          ' <ImagenDis>
+        [Imagene] = 68                            ' <ImagenE>
+        [Imagenn] = 69                            ' <ImagenN>
+        [Inicio2] = 70                            ' <Inicio>
+        [Iniciodefensa] = 71                      ' <InicioDefensa>
+        [Inicioenemigo] = 72                      ' <InicioEnemigo>
+        [Inicioescenario] = 73                    ' <InicioEscenario>
+        [Inicionave] = 74                         ' <InicioNave>
+        [Mult] = 75                               ' <MULT>
+        [Nombre2] = 76                            ' <nombre>
+        [Proteccion2] = 77                        ' <Proteccion>
+        [Punteo2] = 78                            ' <punteo>
+        [Rataque] = 79                            ' <Rataque>
+        [Rdefensa] = 80                           ' <RDefensa>
+        [Renemigo] = 81                           ' <Renemigo>
+        [Rescenario] = 82                         ' <REscenario>
+        [Rfin] = 83                               ' <RFin>
+        [Rfondo] = 84                             ' <RFondo>
+        [Rfrecuencia] = 85                        ' <Rfrecuencia>
+        [Rimagen_def] = 86                        ' <RImagen_Def>
+        [Rimagen_dis] = 87                        ' <RImagen_Dis>
+        [Rimagen_n] = 88                          ' <RImagen_N>
+        [Rimagene] = 89                           ' <RImagenE>
+        [Rinicio] = 90                            ' <RInicio>
+        [Rnave] = 91                              ' <RNave>
+        [Rnombre] = 92                            ' <Rnombre>
+        [Rproteccion] = 93                        ' <RProteccion>
+        [Rpunteo] = 94                            ' <Rpunteo>
+        [Rsonido] = 95                            ' <RSonido>
+        [Rsonido_dis] = 96                        ' <RSonido_Dis>
+        [Ruta2] = 97                              ' <Ruta>
+        [Rvelocidad] = 98                         ' <RVelocidad>
+        [Rvida] = 99                              ' <RVida>
+        [S] = 100                                 ' <S>
+        [Sonido2] = 101                           ' <sonido>
+        [Sonidodis] = 102                         ' <SonidoDis>
+        [Valor] = 103                             ' <VALOR>
+        [Velocidad2] = 104                        ' <velocidad>
+        [Vida2] = 105                             ' <Vida>
     End Enum
 
     Private Enum ProductionIndex
@@ -216,7 +210,7 @@ Module MyParser
         [Cienemi17] = 87                          ' <CIENEMI> ::= <velocidad> <cierre>
         [Cienemi18] = 88                          ' <CIENEMI> ::= <punteo> <cierre>
         [Inicioenemigo_Lbracket_Div_Rbracket] = 89 ' <InicioEnemigo> ::= '[' <Renemigo> '/' <ID> ']'
-        [Nombre_Eq_Cadena] = 90                   ' <nombre> ::= <Rnombre> '=' Cadena
+        [Nombre_Eq] = 90                          ' <nombre> ::= <Rnombre> '=' <Cadena>
         [Imagene_Eq] = 91                         ' <ImagenE> ::= <RImagenE> '=' <Ruta>
         [Frecuencia_Eq] = 92                      ' <frecuencia> ::= <Rfrecuencia> '=' <E>
         [Velocidad_Eq] = 93                       ' <velocidad> ::= <RVelocidad> '=' <E>
@@ -244,14 +238,15 @@ Module MyParser
         [Rvelocidad_Velocidad] = 115              ' <RVelocidad> ::= velocidad
         [Rpunteo_Punteo] = 116                    ' <Rpunteo> ::= punteo
         [Entero_Entero] = 117                     ' <Entero> ::= Entero
-        [E_Plus] = 118                            ' <E> ::= <E> '+' <MULT>
-        [E_Minus] = 119                           ' <E> ::= <E> '-' <MULT>
-        [E] = 120                                 ' <E> ::= <MULT>
-        [Mult_Times] = 121                        ' <MULT> ::= <MULT> '*' <VALOR>
-        [Mult_Div] = 122                          ' <MULT> ::= <MULT> '/' <VALOR>
-        [Mult] = 123                              ' <MULT> ::= <VALOR>
-        [Valor] = 124                             ' <VALOR> ::= <Entero>
-        [Valor_Lparen_Rparen] = 125               ' <VALOR> ::= '(' <E> ')'
+        [Cadena_Cadena] = 118                     ' <Cadena> ::= Cadena
+        [E_Plus] = 119                            ' <E> ::= <E> '+' <MULT>
+        [E_Minus] = 120                           ' <E> ::= <E> '-' <MULT>
+        [E] = 121                                 ' <E> ::= <MULT>
+        [Mult_Times] = 122                        ' <MULT> ::= <MULT> '*' <VALOR>
+        [Mult_Div] = 123                          ' <MULT> ::= <MULT> '/' <VALOR>
+        [Mult] = 124                              ' <MULT> ::= <VALOR>
+        [Valor] = 125                             ' <VALOR> ::= <Entero>
+        [Valor_Lparen_Rparen] = 126               ' <VALOR> ::= '(' <E> ')'
     End Enum
 
     Public Program As Object     'You might derive a specific object
@@ -259,8 +254,8 @@ Module MyParser
     Public Sub Setup()
         'This procedure can be called to load the parse tables. The class can
         'read tables using a BinaryReader.
-
-        Parser.LoadTables(Path.Combine(Application.StartupPath, "Practica1.egt"))
+        
+        Parser.LoadTables(Path.Combine(Application.StartupPath, "grammar.egt"))
     End Sub
     
     Public Function Parse(ByVal Reader As TextReader) As Boolean
@@ -285,7 +280,7 @@ Module MyParser
         Do Until Done
             Response = Parser.Parse()
 
-            Select Case Response
+            Select Case Response              
                 Case GOLD.ParseMessage.LexicalError
                     'Cannot recognize token
                     Done = True
@@ -296,7 +291,7 @@ Module MyParser
 
                 Case GOLD.ParseMessage.Reduction
                     'Create a customized object to store the reduction
-                    Parser.CurrentReduction = CreateNewObject(Parser.CurrentReduction)
+                    .CurrentReduction = CreateNewObject(Parser.CurrentReduction)
 
                 Case GOLD.ParseMessage.Accept
                     'Accepted!
@@ -315,14 +310,11 @@ Module MyParser
                     'This error occurs if the CGT was not loaded.                   
                     Done = True
 
-                Case GOLD.ParseMessage.GroupError
+                Case GOLD.ParseMessage.GroupError 
                     'COMMENT ERROR! Unexpected end of file
                     Done = True
             End Select
         Loop
-        Dim Seleccion As New Seleccion
-        Seleccion.Label1.Text = Nombre_Juego
-        Seleccion.Show()
 
         Return Accepted
     End Function
@@ -331,480 +323,390 @@ Module MyParser
         Dim Result As Object = Nothing
 
         With Reduction
-            Select Case .Parent.TableIndex
-                Case ProductionIndex.S
+            Select Case .Parent.TableIndex                        
+                Case ProductionIndex.S                 
                     ' <S> ::= <Inicio> <Cuerpo> 
 
-                Case ProductionIndex.Inicio_Lbracket_Div_Rbracket
+                Case ProductionIndex.Inicio_Lbracket_Div_Rbracket                 
                     ' <Inicio> ::= '[' <RInicio> '/' <ID> ']' 
 
-                Case ProductionIndex.Rinicio_Inicio
+                Case ProductionIndex.Rinicio_Inicio                 
                     ' <RInicio> ::= Inicio 
 
-                Case ProductionIndex.Fin_Lbracket_Div_Rbracket
+                Case ProductionIndex.Fin_Lbracket_Div_Rbracket                 
                     ' <Fin> ::= '[' <RFin> '/' <ID> ']' 
 
-                Case ProductionIndex.Rfin_Fin
+                Case ProductionIndex.Rfin_Fin                 
                     ' <RFin> ::= fin 
 
-                Case ProductionIndex.Cuerpo
+                Case ProductionIndex.Cuerpo                 
                     ' <Cuerpo> ::= <CuerpoEscenarios> <CuerpoNaves> <CuerpoDefensas> <Enemigo> <Fin> 
 
-                Case ProductionIndex.Cuerpo2
+                Case ProductionIndex.Cuerpo2                 
                     ' <Cuerpo> ::= <CuerpoEscenarios> <CuerpoNaves> <Enemigo> <CuerpoDefensas> <Fin> 
 
-                Case ProductionIndex.Cuerpo3
+                Case ProductionIndex.Cuerpo3                 
                     ' <Cuerpo> ::= <CuerpoEscenarios> <CuerpoDefensas> <CuerpoNaves> <Enemigo> <Fin> 
 
-                Case ProductionIndex.Cuerpo4
+                Case ProductionIndex.Cuerpo4                 
                     ' <Cuerpo> ::= <CuerpoEscenarios> <CuerpoDefensas> <Enemigo> <CuerpoNaves> <Fin> 
 
-                Case ProductionIndex.Cuerpo5
+                Case ProductionIndex.Cuerpo5                 
                     ' <Cuerpo> ::= <CuerpoEscenarios> <Enemigo> <CuerpoNaves> <CuerpoDefensas> <Fin> 
 
-                Case ProductionIndex.Cuerpo6
+                Case ProductionIndex.Cuerpo6                 
                     ' <Cuerpo> ::= <CuerpoEscenarios> <Enemigo> <CuerpoDefensas> <CuerpoNaves> <Fin> 
 
-                Case ProductionIndex.Cuerpo7
+                Case ProductionIndex.Cuerpo7                 
                     ' <Cuerpo> ::= <CuerpoNaves> <CuerpoEscenarios> <CuerpoDefensas> <Enemigo> <Fin> 
 
-                Case ProductionIndex.Cuerpo8
+                Case ProductionIndex.Cuerpo8                 
                     ' <Cuerpo> ::= <CuerpoNaves> <CuerpoEscenarios> <Enemigo> <CuerpoDefensas> <Fin> 
 
-                Case ProductionIndex.Cuerpo9
+                Case ProductionIndex.Cuerpo9                 
                     ' <Cuerpo> ::= <CuerpoNaves> <CuerpoDefensas> <CuerpoEscenarios> <Enemigo> <Fin> 
 
-                Case ProductionIndex.Cuerpo10
+                Case ProductionIndex.Cuerpo10                 
                     ' <Cuerpo> ::= <CuerpoNaves> <CuerpoDefensas> <Enemigo> <CuerpoEscenarios> <Fin> 
 
-                Case ProductionIndex.Cuerpo11
+                Case ProductionIndex.Cuerpo11                 
                     ' <Cuerpo> ::= <CuerpoNaves> <Enemigo> <CuerpoEscenarios> <CuerpoDefensas> <Fin> 
 
-                Case ProductionIndex.Cuerpo12
+                Case ProductionIndex.Cuerpo12                 
                     ' <Cuerpo> ::= <CuerpoNaves> <Enemigo> <CuerpoDefensas> <CuerpoEscenarios> <Fin> 
 
-                Case ProductionIndex.Cuerpo13
+                Case ProductionIndex.Cuerpo13                 
                     ' <Cuerpo> ::= <CuerpoDefensas> <CuerpoEscenarios> <CuerpoNaves> <Enemigo> <Fin> 
 
-                Case ProductionIndex.Cuerpo14
+                Case ProductionIndex.Cuerpo14                 
                     ' <Cuerpo> ::= <CuerpoDefensas> <CuerpoEscenarios> <Enemigo> <CuerpoNaves> <Fin> 
 
-                Case ProductionIndex.Cuerpo15
+                Case ProductionIndex.Cuerpo15                 
                     ' <Cuerpo> ::= <CuerpoDefensas> <CuerpoNaves> <CuerpoEscenarios> <Enemigo> <Fin> 
 
-                Case ProductionIndex.Cuerpo16
+                Case ProductionIndex.Cuerpo16                 
                     ' <Cuerpo> ::= <CuerpoDefensas> <CuerpoNaves> <Enemigo> <CuerpoEscenarios> <Fin> 
 
-                Case ProductionIndex.Cuerpo17
+                Case ProductionIndex.Cuerpo17                 
                     ' <Cuerpo> ::= <CuerpoDefensas> <Enemigo> <CuerpoEscenarios> <CuerpoNaves> <Fin> 
 
-                Case ProductionIndex.Cuerpo18
+                Case ProductionIndex.Cuerpo18                 
                     ' <Cuerpo> ::= <CuerpoDefensas> <Enemigo> <CuerpoNaves> <CuerpoEscenarios> <Fin> 
 
-                Case ProductionIndex.Cuerpo19
+                Case ProductionIndex.Cuerpo19                 
                     ' <Cuerpo> ::= <Enemigo> <CuerpoEscenarios> <CuerpoNaves> <CuerpoDefensas> <Fin> 
 
-                Case ProductionIndex.Cuerpo20
+                Case ProductionIndex.Cuerpo20                 
                     ' <Cuerpo> ::= <Enemigo> <CuerpoEscenarios> <CuerpoDefensas> <CuerpoNaves> <Fin> 
 
-                Case ProductionIndex.Cuerpo21
+                Case ProductionIndex.Cuerpo21                 
                     ' <Cuerpo> ::= <Enemigo> <CuerpoNaves> <CuerpoEscenarios> <CuerpoDefensas> <Fin> 
 
-                Case ProductionIndex.Cuerpo22
+                Case ProductionIndex.Cuerpo22                 
                     ' <Cuerpo> ::= <Enemigo> <CuerpoNaves> <CuerpoDefensas> <CuerpoEscenarios> <Fin> 
 
-                Case ProductionIndex.Cuerpo23
+                Case ProductionIndex.Cuerpo23                 
                     ' <Cuerpo> ::= <Enemigo> <CuerpoDefensas> <CuerpoEscenarios> <CuerpoNaves> <Fin> 
 
-                Case ProductionIndex.Cuerpo24
+                Case ProductionIndex.Cuerpo24                 
                     ' <Cuerpo> ::= <Enemigo> <CuerpoDefensas> <CuerpoNaves> <CuerpoEscenarios> 
 
-                Case ProductionIndex.Cuerpoescenarios
+                Case ProductionIndex.Cuerpoescenarios                 
                     ' <CuerpoEscenarios> ::= <CuerpoEscenarios> <CEscenario> 
 
-                Case ProductionIndex.Cuerpoescenarios2
+                Case ProductionIndex.Cuerpoescenarios2                 
                     ' <CuerpoEscenarios> ::= <CEscenario> 
 
-                Case ProductionIndex.Cescenario
+                Case ProductionIndex.Cescenario                 
                     ' <CEscenario> ::= <InicioEscenario> <CIES> 
 
-                Case ProductionIndex.Cies
+                Case ProductionIndex.Cies                 
                     ' <CIES> ::= <fondo> <coma> <CIES> 
 
-                Case ProductionIndex.Cies2
+                Case ProductionIndex.Cies2                 
                     ' <CIES> ::= <sonido> <coma> <CIES> 
 
-                Case ProductionIndex.Cies3
+                Case ProductionIndex.Cies3                 
                     ' <CIES> ::= <fondo> <cierre> 
 
-                Case ProductionIndex.Cies4
+                Case ProductionIndex.Cies4                 
                     ' <CIES> ::= <sonido> <cierre> 
 
-                Case ProductionIndex.Inicioescenario_Lbracket_Div_Rbracket
+                Case ProductionIndex.Inicioescenario_Lbracket_Div_Rbracket                 
                     ' <InicioEscenario> ::= '[' <REscenario> '/' <ID> ']' 
 
-                Case ProductionIndex.Fondo_Eq
+                Case ProductionIndex.Fondo_Eq                 
                     ' <fondo> ::= <RFondo> '=' <Ruta> 
 
-                Case ProductionIndex.Sonido_Eq
+                Case ProductionIndex.Sonido_Eq                 
                     ' <sonido> ::= <RSonido> '=' <Ruta> 
 
-                Case ProductionIndex.Cuerponaves
+                Case ProductionIndex.Cuerponaves                 
                     ' <CuerpoNaves> ::= <CuerpoNaves> <CNave> 
 
-                Case ProductionIndex.Cuerponaves2
+                Case ProductionIndex.Cuerponaves2                 
                     ' <CuerpoNaves> ::= <CNave> 
 
-                Case ProductionIndex.Cnave
+                Case ProductionIndex.Cnave                 
                     ' <CNave> ::= <InicioNave> <CINA> 
 
-                Case ProductionIndex.Cina
+                Case ProductionIndex.Cina                 
                     ' <CINA> ::= <ImagenN> <coma> <CINA> 
 
-                Case ProductionIndex.Cina2
+                Case ProductionIndex.Cina2                 
                     ' <CINA> ::= <ImagenDis> <coma> <CINA> 
 
-                Case ProductionIndex.Cina3
+                Case ProductionIndex.Cina3                 
                     ' <CINA> ::= <SonidoDis> <coma> <CINA> 
 
-                Case ProductionIndex.Cina4
+                Case ProductionIndex.Cina4                 
                     ' <CINA> ::= <Vida> <coma> <CINA> 
 
-                Case ProductionIndex.Cina5
+                Case ProductionIndex.Cina5                 
                     ' <CINA> ::= <ataque> <coma> <CINA> 
 
-                Case ProductionIndex.Cina6
+                Case ProductionIndex.Cina6                 
                     ' <CINA> ::= <ImagenN> <cierre> 
 
-                Case ProductionIndex.Cina7
+                Case ProductionIndex.Cina7                 
                     ' <CINA> ::= <ImagenDis> <cierre> 
 
-                Case ProductionIndex.Cina8
+                Case ProductionIndex.Cina8                 
                     ' <CINA> ::= <SonidoDis> <cierre> 
 
-                Case ProductionIndex.Cina9
+                Case ProductionIndex.Cina9                 
                     ' <CINA> ::= <Vida> <cierre> 
 
-                Case ProductionIndex.Cina10
+                Case ProductionIndex.Cina10                 
                     ' <CINA> ::= <ataque> <cierre> 
 
-                Case ProductionIndex.Inicionave_Lbracket_Div_Rbracket
+                Case ProductionIndex.Inicionave_Lbracket_Div_Rbracket                 
                     ' <InicioNave> ::= '[' <RNave> '/' <ID> ']' 
 
-                Case ProductionIndex.Imagenn_Eq
+                Case ProductionIndex.Imagenn_Eq                 
                     ' <ImagenN> ::= <RImagen_N> '=' <Ruta> 
 
-                Case ProductionIndex.Imagendis_Eq
+                Case ProductionIndex.Imagendis_Eq                 
                     ' <ImagenDis> ::= <RImagen_Dis> '=' <Ruta> 
 
-                Case ProductionIndex.Sonidodis_Eq
+                Case ProductionIndex.Sonidodis_Eq                 
                     ' <SonidoDis> ::= <RSonido_Dis> '=' <Ruta> 
 
-                Case ProductionIndex.Vida_Eq
+                Case ProductionIndex.Vida_Eq                 
                     ' <Vida> ::= <RVida> '=' <Entero> 
 
-                Case ProductionIndex.Ataque_Eq
+                Case ProductionIndex.Ataque_Eq                 
                     ' <ataque> ::= <Rataque> '=' <Entero> 
 
-                Case ProductionIndex.Cuerpodefensas
+                Case ProductionIndex.Cuerpodefensas                 
                     ' <CuerpoDefensas> ::= <CuerpoDefensas> <CDefensa> 
 
-                Case ProductionIndex.Cuerpodefensas2
+                Case ProductionIndex.Cuerpodefensas2                 
                     ' <CuerpoDefensas> ::= <CDefensa> 
 
-                Case ProductionIndex.Cdefensa
+                Case ProductionIndex.Cdefensa                 
                     ' <CDefensa> ::= <InicioDefensa> <CIDEF> 
 
-                Case ProductionIndex.Cidef
+                Case ProductionIndex.Cidef                 
                     ' <CIDEF> ::= <imagenDef> <coma> <CIDEF> 
 
-                Case ProductionIndex.Cidef2
+                Case ProductionIndex.Cidef2                 
                     ' <CIDEF> ::= <Proteccion> <coma> <CIDEF> 
 
-                Case ProductionIndex.Cidef3
+                Case ProductionIndex.Cidef3                 
                     ' <CIDEF> ::= <imagenDef> <cierre> 
 
-                Case ProductionIndex.Cidef4
+                Case ProductionIndex.Cidef4                 
                     ' <CIDEF> ::= <Proteccion> <cierre> 
 
-                Case ProductionIndex.Iniciodefensa_Lbracket_Div_Rbracket
+                Case ProductionIndex.Iniciodefensa_Lbracket_Div_Rbracket                 
                     ' <InicioDefensa> ::= '[' <RDefensa> '/' <ID> ']' 
 
-                Case ProductionIndex.Imagendef_Eq
+                Case ProductionIndex.Imagendef_Eq                 
                     ' <imagenDef> ::= <RImagen_Def> '=' <Ruta> 
 
-                Case ProductionIndex.Proteccion_Eq
+                Case ProductionIndex.Proteccion_Eq                 
                     ' <Proteccion> ::= <RProteccion> '=' <Entero> 
 
-                Case ProductionIndex.Enemigo
+                Case ProductionIndex.Enemigo                 
                     ' <Enemigo> ::= <Enemigo> <CEnemigo> 
 
-                Case ProductionIndex.Enemigo2
+                Case ProductionIndex.Enemigo2                 
                     ' <Enemigo> ::= <CEnemigo> 
 
-                Case ProductionIndex.Cenemigo
+                Case ProductionIndex.Cenemigo                 
                     ' <CEnemigo> ::= <InicioEnemigo> <CIENEMI> 
 
-                Case ProductionIndex.Cienemi
+                Case ProductionIndex.Cienemi                 
                     ' <CIENEMI> ::= <nombre> <coma> <CIENEMI> 
 
-                Case ProductionIndex.Cienemi2
+                Case ProductionIndex.Cienemi2                 
                     ' <CIENEMI> ::= <ImagenE> <coma> <CIENEMI> 
 
-                Case ProductionIndex.Cienemi3
+                Case ProductionIndex.Cienemi3                 
                     ' <CIENEMI> ::= <ImagenDis> <coma> <CIENEMI> 
 
-                Case ProductionIndex.Cienemi4
+                Case ProductionIndex.Cienemi4                 
                     ' <CIENEMI> ::= <SonidoDis> <coma> <CIENEMI> 
 
-                Case ProductionIndex.Cienemi5
+                Case ProductionIndex.Cienemi5                 
                     ' <CIENEMI> ::= <Vida> <coma> <CIENEMI> 
 
-                Case ProductionIndex.Cienemi6
+                Case ProductionIndex.Cienemi6                 
                     ' <CIENEMI> ::= <ataque> <coma> <CIENEMI> 
 
-                Case ProductionIndex.Cienemi7
+                Case ProductionIndex.Cienemi7                 
                     ' <CIENEMI> ::= <frecuencia> <coma> <CIENEMI> 
 
-                Case ProductionIndex.Cienemi8
+                Case ProductionIndex.Cienemi8                 
                     ' <CIENEMI> ::= <velocidad> <coma> <CIENEMI> 
 
-                Case ProductionIndex.Cienemi9
+                Case ProductionIndex.Cienemi9                 
                     ' <CIENEMI> ::= <punteo> <coma> <CIENEMI> 
 
-                Case ProductionIndex.Cienemi10
+                Case ProductionIndex.Cienemi10                 
                     ' <CIENEMI> ::= <nombre> <cierre> 
 
-                Case ProductionIndex.Cienemi11
+                Case ProductionIndex.Cienemi11                 
                     ' <CIENEMI> ::= <ImagenE> <cierre> 
 
-                Case ProductionIndex.Cienemi12
+                Case ProductionIndex.Cienemi12                 
                     ' <CIENEMI> ::= <ImagenDis> <cierre> 
 
-                Case ProductionIndex.Cienemi13
+                Case ProductionIndex.Cienemi13                 
                     ' <CIENEMI> ::= <SonidoDis> <cierre> 
 
-                Case ProductionIndex.Cienemi14
+                Case ProductionIndex.Cienemi14                 
                     ' <CIENEMI> ::= <Vida> <cierre> 
 
-                Case ProductionIndex.Cienemi15
+                Case ProductionIndex.Cienemi15                 
                     ' <CIENEMI> ::= <ataque> <cierre> 
 
-                Case ProductionIndex.Cienemi16
+                Case ProductionIndex.Cienemi16                 
                     ' <CIENEMI> ::= <frecuencia> <cierre> 
 
-                Case ProductionIndex.Cienemi17
+                Case ProductionIndex.Cienemi17                 
                     ' <CIENEMI> ::= <velocidad> <cierre> 
 
-                Case ProductionIndex.Cienemi18
+                Case ProductionIndex.Cienemi18                 
                     ' <CIENEMI> ::= <punteo> <cierre> 
 
-                Case ProductionIndex.Inicioenemigo_Lbracket_Div_Rbracket
+                Case ProductionIndex.Inicioenemigo_Lbracket_Div_Rbracket                 
                     ' <InicioEnemigo> ::= '[' <Renemigo> '/' <ID> ']' 
 
-                Case ProductionIndex.Nombre_Eq_Cadena
-                    ' <nombre> ::= <Rnombre> '=' Cadena 
+                Case ProductionIndex.Nombre_Eq                 
+                    ' <nombre> ::= <Rnombre> '=' <Cadena> 
 
-                Case ProductionIndex.Imagene_Eq
+                Case ProductionIndex.Imagene_Eq                 
                     ' <ImagenE> ::= <RImagenE> '=' <Ruta> 
 
-                Case ProductionIndex.Frecuencia_Eq
+                Case ProductionIndex.Frecuencia_Eq                 
                     ' <frecuencia> ::= <Rfrecuencia> '=' <E> 
 
-                Case ProductionIndex.Velocidad_Eq
+                Case ProductionIndex.Velocidad_Eq                 
                     ' <velocidad> ::= <RVelocidad> '=' <E> 
 
-                Case ProductionIndex.Punteo_Eq
+                Case ProductionIndex.Punteo_Eq                 
                     ' <punteo> ::= <Rpunteo> '=' <E> 
 
-                Case ProductionIndex.Id_Identificador
-                    If (opcion = 1) Then
-                        Nombre_Juego = Reduction.Item(0).Data
-                    ElseIf (opcion = 2 Or opcion = 3) Then
-                        tempF.Nombre = Reduction.Item(0).Data
-
-                    ElseIf (opcion = 5) Then
-                        tempN.Nombre = Reduction.Item(0).Data
-
-                    ElseIf (opcion = 11) Then
-                        tempD.Nombre = Reduction.Item(0).Data
-
-                    ElseIf (opcion = 14) Then
-                        tempE.Nombre = Reduction.Item(0).Data
-
-                    End If
+                Case ProductionIndex.Id_Identificador                 
                     ' <ID> ::= identificador 
 
-                Case ProductionIndex.Coma_Comma
+                Case ProductionIndex.Coma_Comma                 
                     ' <coma> ::= ',' 
 
-                Case ProductionIndex.Cierre_Dollar
-                    If (opcion = 3 Or opcion = 4 Or opcion = 2) Then
-                        LFondos.Insertar(tempF)
-                    ElseIf (opcion = 5 Or opcion = 6 Or opcion = 7 Or opcion = 8 Or opcion = 9 Or opcion = 10) Then
-                        LNaves.Insertar(tempN)
-                    ElseIf (opcion = 11 Or opcion = 12 Or opcion = 13) Then
-                        LDefendas.Insertar(tempD)
-                    End If
-                    opcion = 44
+                Case ProductionIndex.Cierre_Dollar                 
                     ' <cierre> ::= '$' 
 
-                Case ProductionIndex.Ruta_Ruta
-                    If (opcion = 3) Then
-
-                        tempF.fondo = Reduction.Item(0).Data.ToString()
-
-                    ElseIf (opcion = 4) Then
-
-                        tempF.musica = Reduction.Item(0).Data.ToString()
-
-                    ElseIf (opcion = 6) Then
-
-                        tempN.Rnave = Reduction.Item(0).Data.ToString()
-                    ElseIf (opcion = 7) Then
-
-                        tempN.Rdisparo = Reduction.Item(0).Data.ToString()
-                    ElseIf (opcion = 8) Then
-
-                        tempN.RSonido = Reduction.Item(0).Data.ToString()
-                    ElseIf (opcion = 12) Then
-
-                        tempD.imagen = Reduction.Item(0).Data.ToString()
-                    End If
+                Case ProductionIndex.Ruta_Ruta                 
                     ' <Ruta> ::= Ruta 
 
-                Case ProductionIndex.Rdefensa_Defensas
-                    opcion = 11
-                    tempD = New Defensas
+                Case ProductionIndex.Rdefensa_Defensas                 
                     ' <RDefensa> ::= defensas 
 
-                Case ProductionIndex.Rescenario_Escenarios
-                    opcion = 2
-                    tempF = New Fondos
+                Case ProductionIndex.Rescenario_Escenarios                 
                     ' <REscenario> ::= escenarios 
 
-                Case ProductionIndex.Rfondo_Fondo
-                    opcion = 3
+                Case ProductionIndex.Rfondo_Fondo                 
                     ' <RFondo> ::= fondo 
 
-                Case ProductionIndex.Rimagene_Imagen_enemigo
+                Case ProductionIndex.Rimagene_Imagen_enemigo                 
                     ' <RImagenE> ::= 'imagen_enemigo' 
 
-                Case ProductionIndex.Rimagen_def_Imagen_defensa
-                    If (opcion = 11 Or opcion = 13) Then
-                        opcion = 12
-                    End If
+                Case ProductionIndex.Rimagen_def_Imagen_defensa                 
                     ' <RImagen_Def> ::= 'imagen_defensa' 
 
-                Case ProductionIndex.Rimagen_dis_Imagen_disparo
-                    If (opcion = 5 Or opcion = 6 Or opcion = 8 Or opcion = 9 Or opcion = 10) Then
-                        opcion = 7
-                    End If
+                Case ProductionIndex.Rimagen_dis_Imagen_disparo                 
                     ' <RImagen_Dis> ::= 'imagen_disparo' 
 
-                Case ProductionIndex.Rimagen_n_Imagen_nave
-                    opcion = 6
+                Case ProductionIndex.Rimagen_n_Imagen_nave                 
                     ' <RImagen_N> ::= 'imagen_nave' 
 
-                Case ProductionIndex.Rnave_Naves
-                    opcion = 5
-                    tempN = New Naves
+                Case ProductionIndex.Rnave_Naves                 
                     ' <RNave> ::= naves 
 
-                Case ProductionIndex.Rsonido_Sonido
-                    If (opcion = 3 Or opcion = 2) Then
-                        opcion = 4
-                    End If
+                Case ProductionIndex.Rsonido_Sonido                 
                     ' <RSonido> ::= sonido 
 
-                Case ProductionIndex.Rsonido_dis_Sonido_disparo
-                    If (opcion = 5 Or opcion = 6 Or opcion = 7 Or opcion = 9 Or opcion = 10) Then
-                        opcion = 8
-                    End If
+                Case ProductionIndex.Rsonido_dis_Sonido_disparo                 
                     ' <RSonido_Dis> ::= 'sonido_disparo' 
 
-                Case ProductionIndex.Rvida_Vida
-                    If (opcion = 5 Or opcion = 6 Or opcion = 7 Or opcion = 8 Or opcion = 10) Then
-                        opcion = 9
-                    End If
+                Case ProductionIndex.Rvida_Vida                 
                     ' <RVida> ::= vida 
 
-                Case ProductionIndex.Rataque_Ataque
-                    If (opcion = 5 Or opcion = 6 Or opcion = 7 Or opcion = 8 Or opcion = 9) Then
-                        opcion = 10
-                    End If
+                Case ProductionIndex.Rataque_Ataque                 
                     ' <Rataque> ::= ataque 
 
-                Case ProductionIndex.Rproteccion_Proteccion
-                    If (opcion = 11 Or opcion = 12) Then
-                        opcion = 13
-                    End If
+                Case ProductionIndex.Rproteccion_Proteccion                 
                     ' <RProteccion> ::= proteccion 
 
-                Case ProductionIndex.Renemigo_Enemigos
-                    opcion = 14
-                    tempE = New Enemigos
+                Case ProductionIndex.Renemigo_Enemigos                 
                     ' <Renemigo> ::= enemigos 
 
-                Case ProductionIndex.Rnombre_Nombre
-                    If (opcion = 14) Then
-                        opcion = 15
-                    End If
+                Case ProductionIndex.Rnombre_Nombre                 
                     ' <Rnombre> ::= nombre 
 
-                Case ProductionIndex.Rfrecuencia_Frecuencia
+                Case ProductionIndex.Rfrecuencia_Frecuencia                 
                     ' <Rfrecuencia> ::= frecuencia 
 
-                Case ProductionIndex.Rvelocidad_Velocidad
+                Case ProductionIndex.Rvelocidad_Velocidad                 
                     ' <RVelocidad> ::= velocidad 
 
-                Case ProductionIndex.Rpunteo_Punteo
+                Case ProductionIndex.Rpunteo_Punteo                 
                     ' <Rpunteo> ::= punteo 
 
-                Case ProductionIndex.Entero_Entero
-                    If (opcion = 9) Then
-                        tempN.vida = Double.Parse(.Item(0).Data.ToString)
-                    ElseIf (opcion = 10) Then
-                        tempN.ataque = Double.Parse(.Item(0).Data.ToString)
-                    ElseIf (opcion = 13) Then
-                        tempD.defensa = Double.Parse(.Item(0).Data.ToString)
-                    End If
+                Case ProductionIndex.Entero_Entero                 
                     ' <Entero> ::= Entero 
 
-                Case ProductionIndex.E_Plus
+                Case ProductionIndex.Cadena_Cadena                 
+                    ' <Cadena> ::= Cadena 
+
+                Case ProductionIndex.E_Plus                 
                     ' <E> ::= <E> '+' <MULT> 
 
-                Case ProductionIndex.E_Minus
+                Case ProductionIndex.E_Minus                 
                     ' <E> ::= <E> '-' <MULT> 
 
-                Case ProductionIndex.E
+                Case ProductionIndex.E                 
                     ' <E> ::= <MULT> 
 
-                Case ProductionIndex.Mult_Times
+                Case ProductionIndex.Mult_Times                 
                     ' <MULT> ::= <MULT> '*' <VALOR> 
 
-                Case ProductionIndex.Mult_Div
+                Case ProductionIndex.Mult_Div                 
                     ' <MULT> ::= <MULT> '/' <VALOR> 
 
-                Case ProductionIndex.Mult
+                Case ProductionIndex.Mult                 
                     ' <MULT> ::= <VALOR> 
 
-                Case ProductionIndex.Valor
+                Case ProductionIndex.Valor                 
                     ' <VALOR> ::= <Entero> 
 
-                Case ProductionIndex.Valor_Lparen_Rparen
+                Case ProductionIndex.Valor_Lparen_Rparen                 
                     ' <VALOR> ::= '(' <E> ')' 
 
             End Select
-        End With
-
-        Dim a As String
-        a = Reduction.Item(0).Data
-        If (a <> "") Then
-            a = a + "," + Reduction.Parent.TableIndex.ToString
-            System.Console.WriteLine(a)
-        End If
-
+        End With     
 
         Return Result
     End Function
