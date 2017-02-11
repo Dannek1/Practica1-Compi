@@ -631,7 +631,7 @@ Module MyParser
                         tempD.Nombre = Reduction.Item(0).Data
 
                     ElseIf (opcion = 14) Then
-                        tempE.Nombre = Reduction.Item(0).Data
+                        tempE.ID = Reduction.Item(0).Data
 
                     End If
                     ' <ID> ::= identificador 
@@ -646,6 +646,8 @@ Module MyParser
                         LNaves.Insertar(tempN)
                     ElseIf (opcion = 11 Or opcion = 12 Or opcion = 13) Then
                         LDefendas.Insertar(tempD)
+                    ElseIf (opcion = 14 Or opcion = 15 Or opcion = 16 Or opcion = 17 Or opcion = 18 Or opcion = 19 Or opcion = 20 Or opcion = 21 Or opcion = 22 Or opcion = 23) Then
+                        LEnemigos.Insertar(tempE)
                     End If
                     opcion = 44
                     ' <cierre> ::= '$' 
@@ -671,6 +673,15 @@ Module MyParser
                     ElseIf (opcion = 12) Then
 
                         tempD.imagen = Reduction.Item(0).Data.ToString()
+                    ElseIf (opcion = 16) Then
+
+                        tempE.Renemigo = Reduction.Item(0).Data.ToString()
+                    ElseIf (opcion = 17) Then
+
+                        tempE.Rdisparo = Reduction.Item(0).Data.ToString()
+                    ElseIf (opcion = 18) Then
+
+                        tempE.Rsonido = Reduction.Item(0).Data.ToString()
                     End If
                     ' <Ruta> ::= Ruta 
 
@@ -689,6 +700,9 @@ Module MyParser
                     ' <RFondo> ::= fondo 
 
                 Case ProductionIndex.Rimagene_Imagen_enemigo
+                    If (opcion = 14 Or opcion = 15 Or opcion = 17 Or opcion = 18 Or opcion = 19 Or opcion = 20 Or opcion = 21 Or opcion = 22 Or opcion = 23) Then
+                        opcion = 16
+                    End If
                     ' <RImagenE> ::= 'imagen_enemigo' 
 
                 Case ProductionIndex.Rimagen_def_Imagen_defensa
@@ -700,6 +714,8 @@ Module MyParser
                 Case ProductionIndex.Rimagen_dis_Imagen_disparo
                     If (opcion = 5 Or opcion = 6 Or opcion = 8 Or opcion = 9 Or opcion = 10) Then
                         opcion = 7
+                    ElseIf (opcion = 14 Or opcion = 15 Or opcion = 16 Or opcion = 18 Or opcion = 19 Or opcion = 20 Or opcion = 21 Or opcion = 22 Or opcion = 23) Then
+                        opcion = 17
                     End If
                     ' <RImagen_Dis> ::= 'imagen_disparo' 
 
@@ -721,18 +737,26 @@ Module MyParser
                 Case ProductionIndex.Rsonido_dis_Sonido_disparo
                     If (opcion = 5 Or opcion = 6 Or opcion = 7 Or opcion = 9 Or opcion = 10) Then
                         opcion = 8
+                    ElseIf (opcion = 14 Or opcion = 15 Or opcion = 16 Or opcion = 17 Or opcion = 19 Or opcion = 20 Or opcion = 21 Or opcion = 22 Or opcion = 23) Then
+                        opcion = 18
+
                     End If
                     ' <RSonido_Dis> ::= 'sonido_disparo' 
 
                 Case ProductionIndex.Rvida_Vida
                     If (opcion = 5 Or opcion = 6 Or opcion = 7 Or opcion = 8 Or opcion = 10) Then
                         opcion = 9
+                    ElseIf (opcion = 14 Or opcion = 15 Or opcion = 16 Or opcion = 17 Or opcion = 18 Or opcion = 20 Or opcion = 21 Or opcion = 22 Or opcion = 23) Then
+                        opcion = 19
                     End If
                     ' <RVida> ::= vida 
 
                 Case ProductionIndex.Rataque_Ataque
                     If (opcion = 5 Or opcion = 6 Or opcion = 7 Or opcion = 8 Or opcion = 9) Then
                         opcion = 10
+                    ElseIf (opcion = 14 Or opcion = 15 Or opcion = 16 Or opcion = 17 Or opcion = 18 Or opcion = 19 Or opcion = 21 Or opcion = 22 Or opcion = 23) Then
+                        opcion = 20
+
                     End If
                     ' <Rataque> ::= ataque 
 
@@ -748,18 +772,27 @@ Module MyParser
                     ' <Renemigo> ::= enemigos 
 
                 Case ProductionIndex.Rnombre_Nombre
-                    If (opcion = 14) Then
+                    If (opcion = 14 Or opcion = 16 Or opcion = 17 Or opcion = 18 Or opcion = 19 Or opcion = 20 Or opcion = 21 Or opcion = 22 Or opcion = 23) Then
                         opcion = 15
                     End If
                     ' <Rnombre> ::= nombre 
 
                 Case ProductionIndex.Rfrecuencia_Frecuencia
+                    If (opcion = 14 Or opcion = 15 Or opcion = 16 Or opcion = 17 Or opcion = 18 Or opcion = 19 Or opcion = 20 Or opcion = 22 Or opcion = 23) Then
+                        opcion = 21
+                    End If
                     ' <Rfrecuencia> ::= frecuencia 
 
                 Case ProductionIndex.Rvelocidad_Velocidad
+                    If (opcion = 14 Or opcion = 15 Or opcion = 16 Or opcion = 17 Or opcion = 18 Or opcion = 19 Or opcion = 20 Or opcion = 21 Or opcion = 23) Then
+                        opcion = 22
+                    End If
                     ' <RVelocidad> ::= velocidad 
 
                 Case ProductionIndex.Rpunteo_Punteo
+                    If (opcion = 14 Or opcion = 15 Or opcion = 16 Or opcion = 17 Or opcion = 18 Or opcion = 19 Or opcion = 20 Or opcion = 21 Or opcion = 22) Then
+                        opcion = 23
+                    End If
                     ' <Rpunteo> ::= punteo 
 
                 Case ProductionIndex.Entero_Entero
@@ -770,9 +803,22 @@ Module MyParser
                         tempN.ataque = Double.Parse(.Item(0).Data.ToString)
                     ElseIf (opcion = 13) Then
                         tempD.defensa = Double.Parse(.Item(0).Data.ToString)
+                    ElseIf (opcion = 19) Then
+                        tempE.vida = Double.Parse(.Item(0).Data.ToString)
+                    ElseIf (opcion = 20) Then
+                        tempE.ataque = Double.Parse(.Item(0).Data.ToString)
+                    ElseIf (opcion = 21) Then
+                        tempE.frecuencia = Double.Parse(.Item(0).Data.ToString)
+                    ElseIf (opcion = 22) Then
+                        tempE.velocidad = Double.Parse(.Item(0).Data.ToString)
+                    ElseIf (opcion = 23) Then
+                        tempE.punteo = Double.Parse(.Item(0).Data.ToString)
                     End If
 
                 Case ProductionIndex.Cadena_Cadena
+                    If (opcion = 15) Then
+                        tempE.Nombre = Reduction.Item(0).Data
+                    End If
                     ' <Cadena> ::= Cadena 
 
                 Case ProductionIndex.E_Plus
