@@ -626,6 +626,9 @@ Module MyParser
                     ElseIf (opcion = 5) Then
                         tempN.Nombre = Reduction.Item(0).Data
 
+                    ElseIf (opcion = 11) Then
+                        tempD.Nombre = Reduction.Item(0).Data
+
                     End If
                     ' <ID> ::= identificador 
 
@@ -637,7 +640,10 @@ Module MyParser
                         LFondos.Insertar(tempF)
                     ElseIf (opcion = 5 Or opcion = 6 Or opcion = 7 Or opcion = 8 Or opcion = 9 Or opcion = 10) Then
                         LNaves.Insertar(tempN)
+                    ElseIf (opcion = 11 Or opcion = 12 Or opcion = 13) Then
+                        LDefendas.Insertar(tempD)
                     End If
+                    opcion = 44
                     ' <cierre> ::= '$' 
 
                 Case ProductionIndex.Ruta_Ruta
@@ -658,10 +664,15 @@ Module MyParser
                     ElseIf (opcion = 8) Then
 
                         tempN.RSonido = Reduction.Item(0).Data.ToString()
+                    ElseIf (opcion = 12) Then
+
+                        tempD.imagen = Reduction.Item(0).Data.ToString()
                     End If
                     ' <Ruta> ::= Ruta 
 
                 Case ProductionIndex.Rdefensa_Defensas
+                    opcion = 11
+                    tempD = New Defensas
                     ' <RDefensa> ::= defensas 
 
                 Case ProductionIndex.Rescenario_Escenarios
@@ -677,6 +688,9 @@ Module MyParser
                     ' <RImagenE> ::= 'imagen_enemigo' 
 
                 Case ProductionIndex.Rimagen_def_Imagen_defensa
+                    If (opcion = 11 Or opcion = 13) Then
+                        opcion = 12
+                    End If
                     ' <RImagen_Def> ::= 'imagen_defensa' 
 
                 Case ProductionIndex.Rimagen_dis_Imagen_disparo
@@ -719,6 +733,9 @@ Module MyParser
                     ' <Rataque> ::= ataque 
 
                 Case ProductionIndex.Rproteccion_Proteccion
+                    If (opcion = 11 Or opcion = 12) Then
+                        opcion = 13
+                    End If
                     ' <RProteccion> ::= proteccion 
 
                 Case ProductionIndex.Renemigo_Enemigos
@@ -741,6 +758,8 @@ Module MyParser
                         tempN.vida = Double.Parse(.Item(0).Data.ToString)
                     ElseIf (opcion = 10) Then
                         tempN.ataque = Double.Parse(.Item(0).Data.ToString)
+                    ElseIf (opcion = 13) Then
+                        tempD.defensa = Double.Parse(.Item(0).Data.ToString)
                     End If
                     ' <Entero> ::= Entero 
 
