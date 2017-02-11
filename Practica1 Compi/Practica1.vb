@@ -629,6 +629,9 @@ Module MyParser
                     ElseIf (opcion = 11) Then
                         tempD.Nombre = Reduction.Item(0).Data
 
+                    ElseIf (opcion = 14) Then
+                        tempE.Nombre = Reduction.Item(0).Data
+
                     End If
                     ' <ID> ::= identificador 
 
@@ -739,9 +742,14 @@ Module MyParser
                     ' <RProteccion> ::= proteccion 
 
                 Case ProductionIndex.Renemigo_Enemigos
+                    opcion = 14
+                    tempE = New Enemigos
                     ' <Renemigo> ::= enemigos 
 
                 Case ProductionIndex.Rnombre_Nombre
+                    If (opcion = 14) Then
+                        opcion = 15
+                    End If
                     ' <Rnombre> ::= nombre 
 
                 Case ProductionIndex.Rfrecuencia_Frecuencia
