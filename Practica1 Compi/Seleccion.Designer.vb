@@ -25,11 +25,11 @@ Partial Class Seleccion
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.ComboNaves = New System.Windows.Forms.ComboBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
-        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
+        Me.ComboFondos = New System.Windows.Forms.ComboBox()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -43,7 +43,7 @@ Partial Class Seleccion
         '
         Me.GroupBox1.Controls.Add(Me.Button1)
         Me.GroupBox1.Controls.Add(Me.PictureBox1)
-        Me.GroupBox1.Controls.Add(Me.ComboBox1)
+        Me.GroupBox1.Controls.Add(Me.ComboNaves)
         Me.GroupBox1.Location = New System.Drawing.Point(34, 46)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(187, 275)
@@ -68,19 +68,19 @@ Partial Class Seleccion
         Me.PictureBox1.TabIndex = 1
         Me.PictureBox1.TabStop = False
         '
-        'ComboBox1
+        'ComboNaves
         '
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(7, 30)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(168, 21)
-        Me.ComboBox1.TabIndex = 0
+        Me.ComboNaves.FormattingEnabled = True
+        Me.ComboNaves.Location = New System.Drawing.Point(7, 30)
+        Me.ComboNaves.Name = "ComboNaves"
+        Me.ComboNaves.Size = New System.Drawing.Size(168, 21)
+        Me.ComboNaves.TabIndex = 0
         '
         'GroupBox2
         '
         Me.GroupBox2.Controls.Add(Me.Button2)
         Me.GroupBox2.Controls.Add(Me.PictureBox2)
-        Me.GroupBox2.Controls.Add(Me.ComboBox2)
+        Me.GroupBox2.Controls.Add(Me.ComboFondos)
         Me.GroupBox2.Location = New System.Drawing.Point(252, 46)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.Size = New System.Drawing.Size(187, 275)
@@ -105,13 +105,13 @@ Partial Class Seleccion
         Me.PictureBox2.TabIndex = 1
         Me.PictureBox2.TabStop = False
         '
-        'ComboBox2
+        'ComboFondos
         '
-        Me.ComboBox2.FormattingEnabled = True
-        Me.ComboBox2.Location = New System.Drawing.Point(7, 30)
-        Me.ComboBox2.Name = "ComboBox2"
-        Me.ComboBox2.Size = New System.Drawing.Size(168, 21)
-        Me.ComboBox2.TabIndex = 0
+        Me.ComboFondos.FormattingEnabled = True
+        Me.ComboFondos.Location = New System.Drawing.Point(7, 30)
+        Me.ComboFondos.Name = "ComboFondos"
+        Me.ComboFondos.Size = New System.Drawing.Size(168, 21)
+        Me.ComboFondos.TabIndex = 0
         '
         'Button3
         '
@@ -167,11 +167,11 @@ Partial Class Seleccion
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents Button1 As Button
     Friend WithEvents PictureBox1 As PictureBox
-    Friend WithEvents ComboBox1 As ComboBox
+    Friend WithEvents ComboNaves As ComboBox
     Friend WithEvents GroupBox2 As GroupBox
     Friend WithEvents Button2 As Button
     Friend WithEvents PictureBox2 As PictureBox
-    Friend WithEvents ComboBox2 As ComboBox
+    Friend WithEvents ComboFondos As ComboBox
     Friend WithEvents Button3 As Button
     Friend WithEvents Button4 As Button
     Friend WithEvents Label1 As Label
