@@ -17,7 +17,7 @@
             cabeza.Siguiente = ultimo
             ultimo.anterior = cabeza
 
-        ElseIf (Aux Is Nothing) Then
+        Else
 
             Aux = nuevo
             ultimo.Siguiente = Aux

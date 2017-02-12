@@ -9,6 +9,7 @@ Public Class Juego
 
     Dim Lapiz As Pen
     Dim Logica(10, 10) As String
+    Dim Info(10, 10) As Integer
     Dim x, y, posx As Integer
     Dim pausa As Boolean = False
 
@@ -26,6 +27,7 @@ Public Class Juego
             For y = 0 To 9
 
                 Logica(x, y) = "0"
+                Info(x, y) = 0
 
             Next
         Next
