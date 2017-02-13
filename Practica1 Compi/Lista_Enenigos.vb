@@ -11,10 +11,6 @@
         If (cabeza Is Nothing) Then
 
             cabeza = nuevo
-            cabeza.Siguiente = cabeza
-            cabeza.Anterior = cabeza
-
-
 
         ElseIf (ultimo Is Nothing) Then
 
@@ -22,8 +18,7 @@
             cabeza.Siguiente = ultimo
             ultimo.Anterior = cabeza
 
-            ultimo.Siguiente = cabeza
-            cabeza.Anterior = ultimo
+
 
 
         Else
@@ -34,8 +29,7 @@
             Aux.Anterior = ultimo
             ultimo = Aux
 
-            ultimo.Siguiente = cabeza
-            cabeza.Anterior = ultimo
+
 
         End If
 

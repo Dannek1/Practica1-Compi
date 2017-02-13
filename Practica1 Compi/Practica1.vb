@@ -769,6 +769,8 @@ Module MyParser
                 Case ProductionIndex.Renemigo_Enemigos
                     opcion = 14
                     tempE = New Enemigos
+                    Correlativo = Correlativo + 1
+                    tempE.Correlativo = Correlativo
                     ' <Renemigo> ::= enemigos 
 
                 Case ProductionIndex.Rnombre_Nombre
@@ -808,6 +810,7 @@ Module MyParser
                     ElseIf (opcion = 20) Then
                         tempE.ataque = Double.Parse(.Item(0).Data.ToString)
                     ElseIf (opcion = 21) Then
+                        Frecuencia = Frecuencia + Double.Parse(.Item(0).Data.ToString)
                         tempE.frecuencia = Double.Parse(.Item(0).Data.ToString)
                     ElseIf (opcion = 22) Then
                         tempE.velocidad = Double.Parse(.Item(0).Data.ToString)

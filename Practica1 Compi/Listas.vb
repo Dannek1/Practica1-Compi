@@ -4,7 +4,8 @@
     Public LNaves As Lista_Naves = New Lista_Naves
     Public LEnemigos As Lista_Enenigos = New Lista_Enenigos
     Public Nombre_Juego As String
-
+    Public Frecuencia As Integer = 0
+    Public Correlativo As Integer = 0
 
 
 End Module

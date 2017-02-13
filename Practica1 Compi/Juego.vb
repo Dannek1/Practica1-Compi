@@ -6,12 +6,16 @@ Public Class Juego
     Dim Fondo As Image = Image.FromFile(LFondos.Aux.fondo)
     Dim Nave As Image = Image.FromFile(LNaves.Aux.Rnave)
     Dim DisparoN As Image = Image.FromFile(LNaves.Aux.Rdisparo)
-
     Dim Lapiz As Pen
     Dim Logica(10, 10) As String
-    Dim Info(10, 10) As Integer
     Dim x, y, posx As Integer
     Dim pausa As Boolean = False
+    Dim numAleatorio As New Random()
+    Dim pivote As Integer
+    Dim Salidas As Integer = 0
+    Dim Enemigos(Frecuencia) As Integer
+    Dim IEnemigos(Correlativo) As Image
+
 
 
     Private Sub Juego_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -27,7 +31,6 @@ Public Class Juego
             For y = 0 To 9
 
                 Logica(x, y) = "0"
-                Info(x, y) = 0
 
             Next
         Next
@@ -36,6 +39,9 @@ Public Class Juego
 
         x = 0
         y = 0
+
+        CargarImagenes()
+        Llenar_Correlativo()
         Timer1.Start()
 
 
@@ -65,7 +71,6 @@ Public Class Juego
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
 
-
         PictureBox1.Refresh()
 
         Lapiz = New Pen(Brushes.Black, 10)
@@ -82,6 +87,13 @@ Public Class Juego
                     If (y <> 0) Then
                         Logica(x, y - 1) = "d"
                     End If
+                Else
+                    If (Logica(x, y) <> "0") Then
+                        tablero.DrawImage(IEnemigos(BuscarEnemigo(Logica(x, y)) - 1), (x * 60), (y * 40), 60, 40)
+
+                    End If
+
+
 
                 End If
 
@@ -89,5 +101,137 @@ Public Class Juego
             Next
         Next
 
+
+        If (Salidas = 10) Then
+            Try
+                Dim Lugar = numAleatorio.Next(0, 9)
+                If (Logica(Lugar, 0).Equals("0")) Then
+                    Nuevo_Enemigo()
+                    Logica(Lugar, 0) = BuscarEnemigo()
+                    tablero.DrawImage(IEnemigos(Enemigos(pivote) - 1), (Lugar * 60), 0, 60, 40)
+
+                End If
+            Catch ex As Exception
+
+            End Try
+            Salidas = 0
+
+
+        Else
+            Salidas = Salidas + 1
+        End If
+
+    End Sub
+
+    Public Function BuscarEnemigo(nombre As String)
+        Dim Seguir As Boolean = True
+        LEnemigos.Aux = LEnemigos.cabeza
+
+        While (Seguir)
+
+            If (LEnemigos.Aux.Nombre.Equals(nombre)) Then
+                Seguir = False
+
+            Else
+                If (LEnemigos.Aux.Siguiente Is Nothing) Then
+                    Seguir = False
+                Else
+                    LEnemigos.Aux = LEnemigos.Aux.Siguiente
+
+                End If
+
+            End If
+
+        End While
+
+        Return LEnemigos.Aux.Correlativo
+    End Function
+
+
+    Public Function BuscarEnemigo()
+        Dim Seguir As Boolean = True
+        LEnemigos.Aux = LEnemigos.cabeza
+
+        While (Seguir)
+
+            If (LEnemigos.Aux.Correlativo = pivote) Then
+                Seguir = False
+
+            Else
+                If (LEnemigos.Aux.Siguiente Is Nothing) Then
+                    Seguir = False
+                Else
+                    LEnemigos.Aux = LEnemigos.Aux.Siguiente
+
+                End If
+
+            End If
+
+        End While
+
+        Return LEnemigos.Aux.Nombre
+
+    End Function
+
+    Public Sub Nuevo_Enemigo()
+        Dim k As Integer
+        Dim caminante As Integer = 0
+        pivote = 1
+        k = numAleatorio.Next(1, 50)
+
+        While (caminante <> k)
+
+            If (pivote < Frecuencia) Then
+                pivote = pivote + 1
+            Else
+                pivote = 1
+            End If
+
+            caminante = caminante + 1
+        End While
+
+
+    End Sub
+
+    Public Sub Llenar_Correlativo()
+        Dim Seguir As Boolean = True
+        LEnemigos.Aux = LEnemigos.cabeza
+        Dim inicio As Integer = 0
+        Dim Final As Integer = LEnemigos.Aux.frecuencia - 1
+
+
+        While (Seguir)
+            For k As Integer = inicio To Final
+                Enemigos(k) = LEnemigos.Aux.Correlativo
+
+            Next
+
+            If (LEnemigos.Aux.Siguiente Is Nothing) Then
+                Seguir = False
+            Else
+                inicio = Final + 1
+                LEnemigos.Aux = LEnemigos.Aux.Siguiente
+                Final = (LEnemigos.Aux.frecuencia - 1 + inicio)
+            End If
+
+
+
+        End While
+    End Sub
+
+
+    Public Sub CargarImagenes()
+        Dim seguir As Boolean = True
+        LEnemigos.Aux = LEnemigos.cabeza
+
+        While (seguir)
+            IEnemigos(LEnemigos.Aux.Correlativo - 1) = Image.FromFile(LEnemigos.Aux.Renemigo)
+
+            If (LEnemigos.Aux.Siguiente Is Nothing) Then
+                seguir = False
+            Else
+                LEnemigos.Aux = LEnemigos.Aux.Siguiente
+            End If
+        End While
     End Sub
 End Class
