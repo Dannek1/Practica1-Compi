@@ -87,20 +87,26 @@ Public Class Juego
                     If (y <> 0) Then
                         Logica(x, y - 1) = "d"
                     End If
-                Else
-                    If (Logica(x, y) <> "0") Then
-                        tablero.DrawImage(IEnemigos(BuscarEnemigo(Logica(x, y)) - 1), (x * 60), (y * 40), 60, 40)
 
+                End If
+            Next
+        Next
+
+        For x = 0 To 9
+            For y = 9 To 0 Step -1
+                If ((Logica(x, y) <> "0")) Then
+                    If Not (Logica(x, y).Equals("x")) Then
+                        pivote = BuscarEnemigo(Logica(x, y))
+                        tablero.DrawImage(IEnemigos(pivote - 1), (x * 60), (y * 40), 60, 40)
+                        Logica(x, y + 1) = Logica(x, y)
+                        Logica(x, y) = "0"
                     End If
 
 
 
                 End If
-
-
             Next
         Next
-
 
         If (Salidas = 10) Then
             Try
