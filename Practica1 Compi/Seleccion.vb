@@ -70,6 +70,7 @@
 
         While (seguir)
             LDefendas.Aux.imagen = Recortar_Comillas(LDefendas.Aux.imagen)
+            ComboDefensas.Items.Add(LDefendas.Aux.Nombre)
 
             If (LDefendas.Aux.Siguiente Is Nothing) Then
                 seguir = False
@@ -164,6 +165,29 @@
         End While
     End Sub
 
+    Private Sub BuscarDefensas()
+        Dim seguir As Boolean = True
+
+        LDefendas.Aux = LDefendas.cabeza
+
+        While (seguir)
+            If (LDefendas.Aux.Nombre.Equals(ComboDefensas.Text)) Then
+                seguir = False
+
+                Dim Imagen As Image = Image.FromFile(LDefendas.Aux.imagen)
+                ImgDefensas.Image = Imagen
+
+
+            ElseIf (LDefendas.Aux.Siguiente Is Nothing) Then
+                seguir = False
+            Else
+                LDefendas.Aux = LDefendas.Aux.Siguiente
+            End If
+
+
+        End While
+    End Sub
+
     Private Sub ComboFondos_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboFondos.SelectedIndexChanged
         BuscarFondos()
     End Sub
@@ -179,5 +203,9 @@
         juego.Show()
         Me.Hide()
 
+    End Sub
+
+    Private Sub ComboDefensas_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboDefensas.SelectedIndexChanged
+        BuscarDefensas()
     End Sub
 End Class

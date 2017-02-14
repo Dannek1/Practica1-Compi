@@ -33,10 +33,16 @@ Partial Class Seleccion
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.Button5 = New System.Windows.Forms.Button()
+        Me.ImgDefensas = New System.Windows.Forms.PictureBox()
+        Me.ComboDefensas = New System.Windows.Forms.ComboBox()
         Me.GroupBox1.SuspendLayout()
         CType(Me.ImgNaves, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
         CType(Me.ImgFondos, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox3.SuspendLayout()
+        CType(Me.ImgDefensas, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupBox1
@@ -126,7 +132,7 @@ Partial Class Seleccion
         '
         'Button4
         '
-        Me.Button4.Location = New System.Drawing.Point(277, 335)
+        Me.Button4.Location = New System.Drawing.Point(498, 335)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(110, 23)
         Me.Button4.TabIndex = 3
@@ -137,18 +143,57 @@ Partial Class Seleccion
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(179, 9)
+        Me.Label1.Location = New System.Drawing.Point(289, 9)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(83, 25)
         Me.Label1.TabIndex = 4
         Me.Label1.Text = "Label1"
         '
+        'GroupBox3
+        '
+        Me.GroupBox3.Controls.Add(Me.Button5)
+        Me.GroupBox3.Controls.Add(Me.ImgDefensas)
+        Me.GroupBox3.Controls.Add(Me.ComboDefensas)
+        Me.GroupBox3.Location = New System.Drawing.Point(470, 46)
+        Me.GroupBox3.Name = "GroupBox3"
+        Me.GroupBox3.Size = New System.Drawing.Size(187, 275)
+        Me.GroupBox3.TabIndex = 5
+        Me.GroupBox3.TabStop = False
+        Me.GroupBox3.Text = "Fondos"
+        '
+        'Button5
+        '
+        Me.Button5.Location = New System.Drawing.Point(42, 238)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(75, 23)
+        Me.Button5.TabIndex = 2
+        Me.Button5.Text = "Elegir"
+        Me.Button5.UseVisualStyleBackColor = True
+        '
+        'ImgDefensas
+        '
+        Me.ImgDefensas.Location = New System.Drawing.Point(7, 58)
+        Me.ImgDefensas.Name = "ImgDefensas"
+        Me.ImgDefensas.Size = New System.Drawing.Size(168, 156)
+        Me.ImgDefensas.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.ImgDefensas.TabIndex = 1
+        Me.ImgDefensas.TabStop = False
+        '
+        'ComboDefensas
+        '
+        Me.ComboDefensas.FormattingEnabled = True
+        Me.ComboDefensas.Location = New System.Drawing.Point(7, 30)
+        Me.ComboDefensas.Name = "ComboDefensas"
+        Me.ComboDefensas.Size = New System.Drawing.Size(168, 21)
+        Me.ComboDefensas.TabIndex = 0
+        '
         'Seleccion
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(486, 381)
+        Me.ClientSize = New System.Drawing.Size(672, 381)
         Me.ControlBox = False
+        Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.Button3)
@@ -161,6 +206,8 @@ Partial Class Seleccion
         CType(Me.ImgNaves, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox2.ResumeLayout(False)
         CType(Me.ImgFondos, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox3.ResumeLayout(False)
+        CType(Me.ImgDefensas, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -177,4 +224,8 @@ Partial Class Seleccion
     Friend WithEvents Button3 As Button
     Friend WithEvents Button4 As Button
     Friend WithEvents Label1 As Label
+    Friend WithEvents GroupBox3 As GroupBox
+    Friend WithEvents Button5 As Button
+    Friend WithEvents ImgDefensas As PictureBox
+    Friend WithEvents ComboDefensas As ComboBox
 End Class

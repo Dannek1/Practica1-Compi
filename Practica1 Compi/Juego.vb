@@ -6,6 +6,7 @@ Public Class Juego
     Dim Fondo As Image = Image.FromFile(LFondos.Aux.fondo)
     Dim Nave As Image = Image.FromFile(LNaves.Aux.Rnave)
     Dim DisparoN As Image = Image.FromFile(LNaves.Aux.Rdisparo)
+    Dim Defensa As Image = Image.FromFile(LDefendas.Aux.imagen)
     Dim Lapiz As Pen
     Dim Logica(10, 10) As String
     Dim Evida(10, 10) As Integer
@@ -83,6 +84,10 @@ Public Class Juego
 
         Lapiz = New Pen(Brushes.Black, 10)
 
+        If (vida <= 0) Then
+            Timer1.Stop()
+
+        End If
 
         'cuadricula 10x10, cuadros de 60 *40
         For x = 0 To 9
@@ -127,12 +132,14 @@ Public Class Juego
                         If (y <> 9) Then
                             If (Logica(x, y + 1).Equals("x")) Then
                                 vida = vida - LEnemigos.Aux.ataque
+                                Logica(x, y) = "0"
+                                Evida(x, y) = 0
                                 TextBox1.Text = vida
                             ElseIf (Logica(x, y + 1).Equals("d")) Then
                                 Evida(x, y) = Evida(x, y) - LNaves.Aux.ataque
                                 Logica(x, y + 1) = "0"
 
-                                If (Evida(x, y) >= 0) Then
+                                If (Evida(x, y) <= 0) Then
                                     Logica(x, y) = "0"
                                     puntos = puntos + LEnemigos.Aux.punteo
                                     TextBox2.Text = puntos
