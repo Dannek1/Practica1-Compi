@@ -113,6 +113,12 @@
     </Compile>
     <Compile Include="Naves.vb" />
     <Compile Include="Practica1.vb" />
+    <Compile Include="Salida.Designer.vb">
+      <DependentUpon>Salida.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Salida.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Seleccion.Designer.vb">
       <DependentUpon>Seleccion.vb</DependentUpon>
     </Compile>
@@ -132,6 +138,9 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Salida.resx">
+      <DependentUpon>Salida.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Seleccion.resx">
       <DependentUpon>Seleccion.vb</DependentUpon>

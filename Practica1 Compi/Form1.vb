@@ -7,7 +7,15 @@ Public Class Form1
             MessageBox.Show("No hay nada que analizar", "Error")
         Else
             MyParser.Setup()
-            MyParser.Parse(New StringReader(TextBox1.Text))
+
+            If (MyParser.Parse(New StringReader(TextBox1.Text))) Then
+                Dim Seleccion As New Seleccion
+                Seleccion.Label1.Text = Nombre_Juego
+                Seleccion.Show()
+                Me.Hide()
+            Else
+                MessageBox.Show("Ha habido un Error" + SError, "Error")
+            End If
             TextBox1.Clear()
 
 
@@ -18,7 +26,7 @@ Public Class Form1
 
 
 
-            Me.Hide()
+
 
 
 

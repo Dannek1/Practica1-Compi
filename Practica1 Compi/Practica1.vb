@@ -289,10 +289,14 @@ Module MyParser
             Select Case Response
                 Case GOLD.ParseMessage.LexicalError
                     'Cannot recognize token
+                    SError = " Lexio en " + Parser.CurrentToken.Data.ToString
+                    Accepted = False
                     Done = True
 
                 Case GOLD.ParseMessage.SyntaxError
                     'Expecting a different token
+                    SError = " Sintactico en " + Parser.CurrentToken.Data.ToString
+                    Accepted = False
                     Done = True
 
                 Case GOLD.ParseMessage.Reduction
@@ -311,6 +315,9 @@ Module MyParser
                 Case GOLD.ParseMessage.InternalError
                     'INTERNAL ERROR! Something is horribly wrong.
                     Done = True
+                    SError = Parser.CurrentReduction.Item(0).Data.ToString() + ", en" + Parser.CurrentPosition.ToString
+
+                    Accepted = False
 
                 Case GOLD.ParseMessage.NotLoadedError
                     'This error occurs if the CGT was not loaded.                   
@@ -321,9 +328,7 @@ Module MyParser
                     Done = True
             End Select
         Loop
-        Dim Seleccion As New Seleccion
-        Seleccion.Label1.Text = Nombre_Juego
-        Seleccion.Show()
+
 
         Return Accepted
     End Function

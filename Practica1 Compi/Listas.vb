@@ -6,6 +6,6 @@
     Public Nombre_Juego As String
     Public Frecuencia As Integer = 0
     Public Correlativo As Integer = 0
-
+    Public SError As String
 
 End Module

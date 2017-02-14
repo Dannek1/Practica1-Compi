@@ -19,6 +19,8 @@ Public Class Juego
     Dim IEnemigos(Correlativo) As Image
     Dim DEnemigos(Correlativo) As Image
 
+    Dim Tiempo, Esquivados, Destruidos As Integer
+
 
 
 
@@ -29,8 +31,14 @@ Public Class Juego
         vida = LNaves.Aux.vida
         puntos = 0
         contador = 1
+
+        Tiempo = 0
+        Esquivados = 0
+        Destruidos = 0
+
         TextBox1.Text = vida
         TextBox2.Text = puntos
+        TextBox2.Text = Tiempo
 
         x = 0
         y = 0
@@ -98,7 +106,7 @@ Public Class Juego
         Lapiz = New Pen(Brushes.Black, 10)
 
         If (vida <= 0) Then
-            Timer1.Stop()
+            Salida()
 
         End If
 
@@ -169,6 +177,7 @@ Public Class Juego
                                 If (Evida(x, y) <= 0) Then
                                     Logica(x, y) = "0"
                                     puntos = puntos + LEnemigos.Aux.punteo
+                                    Destruidos = Destruidos + 1
                                     TextBox2.Text = puntos
 
                                 Else
@@ -324,6 +333,7 @@ Public Class Juego
 
 
                         ElseIf (y = 9) Then
+                            Esquivados = Esquivados + 1
                         End If
                         If (mov) Then
                             Logica(x, y) = "0"
@@ -394,6 +404,8 @@ Public Class Juego
         End If
 
         If (contador = 10) Then
+            Tiempo = Tiempo + 1
+            TextBox3.Text = Tiempo
             contador = 1
         Else
             contador = contador + 1
@@ -535,5 +547,17 @@ Public Class Juego
                 LEnemigos.Aux = LEnemigos.Aux.Siguiente
             End If
         End While
+    End Sub
+
+    Public Sub Salida()
+        Timer1.Stop()
+        Dim Resumen As New Salida
+
+        Resumen.TxtTiempo.Text = Tiempo
+        Resumen.TxtPuntos.Text = puntos
+        Resumen.txtEsquivar.Text = Esquivados
+        Resumen.TxtDestruidos.Text = Destruidos
+        Resumen.Show()
+        Me.Hide()
     End Sub
 End Class
