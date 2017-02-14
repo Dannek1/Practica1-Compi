@@ -208,4 +208,9 @@
     Private Sub ComboDefensas_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboDefensas.SelectedIndexChanged
         BuscarDefensas()
     End Sub
+
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+        ComboDefensas.Enabled = False
+        Button5.Enabled = False
+    End Sub
 End Class

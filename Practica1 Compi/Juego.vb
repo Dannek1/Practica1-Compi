@@ -43,6 +43,17 @@ Public Class Juego
             Next
         Next
 
+        Logica(2, 7) = "M"
+        Logica(4, 7) = "M"
+        Logica(6, 7) = "M"
+        Logica(8, 7) = "M"
+
+
+        Evida(2, 7) = LDefendas.Aux.defensa
+        Evida(4, 7) = LDefendas.Aux.defensa
+        Evida(6, 7) = LDefendas.Aux.defensa
+        Evida(8, 7) = LDefendas.Aux.defensa
+
         Logica(posx, 9) = "x"
 
         x = 0
@@ -95,16 +106,30 @@ Public Class Juego
 
                 If (Logica(x, y).Equals("x")) Then
                     tablero.DrawImage(Nave, (x * 60), (y * 40), 60, 40)
+
+                ElseIf (Logica(x, y).Equals("M")) Then
+                    tablero.DrawImage(Defensa, (x * 60), (y * 40), 60, 40)
+
                 ElseIf (Logica(x, y).Equals("d")) Then
-                    If Not (Logica(x, y - 1).Equals("0") And y <> 1) Then
+                    If Not ((Logica(x, y - 1).Equals("0") Or Logica(x, y - 1).Equals("M")) And y <> 1) Then
                         If (Logica(x, y - 1).Equals("d")) Then
                             Logica(x, y) = "0"
                             tablero.DrawImage(DisparoN, (x * 60), (y * 40), 60, 40)
                             If (y <> 0) Then
                                 Logica(x, y - 1) = "d"
                             End If
+
                         End If
 
+                    ElseIf (Logica(x, y - 1).Equals("M")) Then
+                        Evida(x, y - 1) = Evida(x, y - 1) - LNaves.Aux.ataque
+                        Logica(x, y) = "0"
+
+                        If (Evida(x, y - 1) <= 0) Then
+                            Evida(x, y - 1) = 0
+                            Logica(x, y - 1) = "0"
+
+                        End If
                     Else
                         Logica(x, y) = "0"
                         tablero.DrawImage(DisparoN, (x * 60), (y * 40), 60, 40)
@@ -126,7 +151,7 @@ Public Class Juego
         For x = 0 To 9
             For y = 9 To 0 Step -1
                 If ((Logica(x, y) <> "0")) Then
-                    If Not (Logica(x, y).Equals("x") Or Logica(x, y).Equals("d")) Then
+                    If Not (Logica(x, y).Equals("x") Or Logica(x, y).Equals("d") Or Logica(x, y).Equals("M")) Then
                         pivote = BuscarEnemigo(Logica(x, y))
                         tablero.DrawImage(IEnemigos(pivote - 1), (x * 60), (y * 40), 60, 40)
                         If (y <> 9) Then
@@ -191,10 +216,21 @@ Public Class Juego
                                     End If
                                 End If
 
+                            ElseIf (Logica(x, y + 1).Equals("M")) Then
+                                Evida(x, y + 1) = Evida(x, y + 1) - LEnemigos.Aux.ataque
+
+                                If (Evida(x, y + 1) <= 0) Then
+                                    Evida(x, y + 1) = 0
+                                    Logica(x, y + 1) = "0"
+
+                                End If
+
+                                Evida(x, y) = 0
+                                Logica(x, y) = "0"
 
                             Else
 
-                                If (LEnemigos.Aux.velocidad = 10 And Evida(x, y + 1) <> 0) Then
+                                    If (LEnemigos.Aux.velocidad = 10 And Evida(x, y + 1) <> 0) Then
                                     Logica(x, y + 1) = Logica(x, y)
                                     Evida(x, y + 1) = Evida(x, y)
                                     mov = True
