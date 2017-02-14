@@ -8,7 +8,8 @@ Public Class Juego
     Dim DisparoN As Image = Image.FromFile(LNaves.Aux.Rdisparo)
     Dim Lapiz As Pen
     Dim Logica(10, 10) As String
-    Dim x, y, posx As Integer
+    Dim Evida(10, 10) As Integer
+    Dim x, y, posx, vida As Integer
     Dim pausa As Boolean = False
     Dim numAleatorio As New Random()
     Dim pivote As Integer
@@ -22,6 +23,9 @@ Public Class Juego
         tablero = PictureBox1.CreateGraphics
         PictureBox1.Image = Fondo
         My.Computer.Audio.Play(LFondos.Aux.musica, AudioPlayMode.BackgroundLoop)
+        vida = LNaves.Aux.vida
+        TextBox1.Text = vida
+
 
         x = 0
         y = 0
@@ -31,6 +35,7 @@ Public Class Juego
             For y = 0 To 9
 
                 Logica(x, y) = "0"
+                Evida(x, y) = 0
 
             Next
         Next
@@ -95,11 +100,16 @@ Public Class Juego
         For x = 0 To 9
             For y = 9 To 0 Step -1
                 If ((Logica(x, y) <> "0")) Then
-                    If Not (Logica(x, y).Equals("x")) Then
+                    If Not (Logica(x, y).Equals("x") Or Logica(x, y).Equals("d")) Then
                         pivote = BuscarEnemigo(Logica(x, y))
                         tablero.DrawImage(IEnemigos(pivote - 1), (x * 60), (y * 40), 60, 40)
-                        Logica(x, y + 1) = Logica(x, y)
+                        If (y <> 9) Then
+                            Logica(x, y + 1) = Logica(x, y)
+                            Evida(x, y + 1) = Evida(x, y)
+                            Elseif (y=9)
+                        End If
                         Logica(x, y) = "0"
+                        Evida(x,y)=0
                     End If
 
 
@@ -114,6 +124,7 @@ Public Class Juego
                 If (Logica(Lugar, 0).Equals("0")) Then
                     Nuevo_Enemigo()
                     Logica(Lugar, 0) = BuscarEnemigo()
+                    Evida(Lugar, 0) = LEnemigos.Aux.vida
                     tablero.DrawImage(IEnemigos(Enemigos(pivote) - 1), (Lugar * 60), 0, 60, 40)
 
                 End If
