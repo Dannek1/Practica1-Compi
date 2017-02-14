@@ -27,6 +27,8 @@ Partial Class Juego
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.Label2 = New System.Windows.Forms.Label()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -60,12 +62,31 @@ Partial Class Juego
         Me.TextBox1.Size = New System.Drawing.Size(56, 20)
         Me.TextBox1.TabIndex = 2
         '
+        'TextBox2
+        '
+        Me.TextBox2.Enabled = False
+        Me.TextBox2.Location = New System.Drawing.Point(16, 164)
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.Size = New System.Drawing.Size(56, 20)
+        Me.TextBox2.TabIndex = 4
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(13, 129)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(40, 13)
+        Me.Label2.TabIndex = 3
+        Me.Label2.Text = "Puntos"
+        '
         'Juego
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(720, 435)
         Me.ControlBox = False
+        Me.Controls.Add(Me.TextBox2)
+        Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.PictureBox1)
@@ -82,4 +103,6 @@ Partial Class Juego
     Friend WithEvents Timer1 As Timer
     Friend WithEvents Label1 As Label
     Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents Label2 As Label
 End Class

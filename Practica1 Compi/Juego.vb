@@ -9,7 +9,7 @@ Public Class Juego
     Dim Lapiz As Pen
     Dim Logica(10, 10) As String
     Dim Evida(10, 10) As Integer
-    Dim x, y, posx, vida As Integer
+    Dim x, y, posx, vida, puntos, contador As Integer
     Dim pausa As Boolean = False
     Dim numAleatorio As New Random()
     Dim pivote As Integer
@@ -24,8 +24,10 @@ Public Class Juego
         PictureBox1.Image = Fondo
         My.Computer.Audio.Play(LFondos.Aux.musica, AudioPlayMode.BackgroundLoop)
         vida = LNaves.Aux.vida
+        puntos = 0
+        contador = 1
         TextBox1.Text = vida
-
+        TextBox2.Text = puntos
 
         x = 0
         y = 0
@@ -75,10 +77,12 @@ Public Class Juego
     End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        Dim mov As Boolean = False
 
         PictureBox1.Refresh()
 
         Lapiz = New Pen(Brushes.Black, 10)
+
 
         'cuadricula 10x10, cuadros de 60 *40
         For x = 0 To 9
@@ -87,11 +91,28 @@ Public Class Juego
                 If (Logica(x, y).Equals("x")) Then
                     tablero.DrawImage(Nave, (x * 60), (y * 40), 60, 40)
                 ElseIf (Logica(x, y).Equals("d")) Then
-                    Logica(x, y) = "0"
-                    tablero.DrawImage(DisparoN, (x * 60), (y * 40), 60, 40)
-                    If (y <> 0) Then
-                        Logica(x, y - 1) = "d"
+                    If Not (Logica(x, y - 1).Equals("0") And y <> 1) Then
+                        If (Logica(x, y - 1).Equals("d")) Then
+                            Logica(x, y) = "0"
+                            tablero.DrawImage(DisparoN, (x * 60), (y * 40), 60, 40)
+                            If (y <> 0) Then
+                                Logica(x, y - 1) = "d"
+                            End If
+                        End If
+
+                    Else
+                        Logica(x, y) = "0"
+                        tablero.DrawImage(DisparoN, (x * 60), (y * 40), 60, 40)
+                        If (y <> 0) Then
+                            Logica(x, y - 1) = "d"
+                        End If
                     End If
+
+
+
+
+
+
 
                 End If
             Next
@@ -104,12 +125,125 @@ Public Class Juego
                         pivote = BuscarEnemigo(Logica(x, y))
                         tablero.DrawImage(IEnemigos(pivote - 1), (x * 60), (y * 40), 60, 40)
                         If (y <> 9) Then
-                            Logica(x, y + 1) = Logica(x, y)
-                            Evida(x, y + 1) = Evida(x, y)
-                            Elseif (y=9)
+                            If (Logica(x, y + 1).Equals("x")) Then
+                                vida = vida - LEnemigos.Aux.ataque
+                                TextBox1.Text = vida
+                            ElseIf (Logica(x, y + 1).Equals("d")) Then
+                                Evida(x, y) = Evida(x, y) - LNaves.Aux.ataque
+                                Logica(x, y + 1) = "0"
+
+                                If (Evida(x, y) >= 0) Then
+                                    Logica(x, y) = "0"
+                                    puntos = puntos + LEnemigos.Aux.punteo
+                                    TextBox2.Text = puntos
+
+                                Else
+                                    If (LEnemigos.Aux.velocidad = 10 And Evida(x, y + 1) <> 0) Then
+                                        Logica(x, y + 1) = Logica(x, y)
+                                        Evida(x, y + 1) = Evida(x, y)
+                                        mov = True
+
+                                    ElseIf (LEnemigos.Aux.velocidad = 9 And ((contador Mod 2) = 0)) Then
+                                        Logica(x, y + 1) = Logica(x, y)
+                                        Evida(x, y + 1) = Evida(x, y)
+                                        mov = True
+                                    ElseIf (LEnemigos.Aux.velocidad = 8 And ((contador Mod 3) = 0)) Then
+                                        Logica(x, y + 1) = Logica(x, y)
+                                        Evida(x, y + 1) = Evida(x, y)
+                                        mov = True
+                                    ElseIf (LEnemigos.Aux.velocidad = 7 And ((contador Mod 4) = 0)) Then
+                                        Logica(x, y + 1) = Logica(x, y)
+                                        Evida(x, y + 1) = Evida(x, y)
+                                        mov = True
+                                    ElseIf (LEnemigos.Aux.velocidad = 6 And ((contador Mod 5) = 0)) Then
+                                        Logica(x, y + 1) = Logica(x, y)
+                                        Evida(x, y + 1) = Evida(x, y)
+                                        mov = True
+                                    ElseIf (LEnemigos.Aux.velocidad = 5 And ((contador Mod 6) = 0)) Then
+                                        Logica(x, y + 1) = Logica(x, y)
+                                        Evida(x, y + 1) = Evida(x, y)
+                                        mov = True
+                                    ElseIf (LEnemigos.Aux.velocidad = 4 And ((contador Mod 7) = 0)) Then
+                                        Logica(x, y + 1) = Logica(x, y)
+                                        Evida(x, y + 1) = Evida(x, y)
+                                        mov = True
+                                    ElseIf (LEnemigos.Aux.velocidad = 3 And ((contador Mod 8) = 0)) Then
+                                        Logica(x, y + 1) = Logica(x, y)
+                                        Evida(x, y + 1) = Evida(x, y)
+                                        mov = True
+                                    ElseIf (LEnemigos.Aux.velocidad = 2 And ((contador Mod 9) = 0)) Then
+                                        Logica(x, y + 1) = Logica(x, y)
+                                        Evida(x, y + 1) = Evida(x, y)
+                                        mov = True
+                                    ElseIf (LEnemigos.Aux.velocidad = 1 And ((contador Mod 10) = 0)) Then
+
+                                        Logica(x, y + 1) = Logica(x, y)
+                                        Evida(x, y + 1) = Evida(x, y)
+                                        mov = True
+
+                                    End If
+                                End If
+
+
+                            Else
+
+                                If (LEnemigos.Aux.velocidad = 10 And Evida(x, y + 1) <> 0) Then
+                                    Logica(x, y + 1) = Logica(x, y)
+                                    Evida(x, y + 1) = Evida(x, y)
+                                    mov = True
+
+                                ElseIf (LEnemigos.Aux.velocidad = 9 And ((contador Mod 2) = 0)) Then
+                                    Logica(x, y + 1) = Logica(x, y)
+                                    Evida(x, y + 1) = Evida(x, y)
+                                    mov = True
+                                ElseIf (LEnemigos.Aux.velocidad = 8 And ((contador Mod 3) = 0)) Then
+                                    Logica(x, y + 1) = Logica(x, y)
+                                    Evida(x, y + 1) = Evida(x, y)
+                                    mov = True
+                                ElseIf (LEnemigos.Aux.velocidad = 7 And ((contador Mod 4) = 0)) Then
+                                    Logica(x, y + 1) = Logica(x, y)
+                                    Evida(x, y + 1) = Evida(x, y)
+                                    mov = True
+                                ElseIf (LEnemigos.Aux.velocidad = 6 And ((contador Mod 5) = 0)) Then
+                                    Logica(x, y + 1) = Logica(x, y)
+                                    Evida(x, y + 1) = Evida(x, y)
+                                    mov = True
+                                ElseIf (LEnemigos.Aux.velocidad = 5 And ((contador Mod 6) = 0)) Then
+                                    Logica(x, y + 1) = Logica(x, y)
+                                    Evida(x, y + 1) = Evida(x, y)
+                                    mov = True
+                                ElseIf (LEnemigos.Aux.velocidad = 4 And ((contador Mod 7) = 0)) Then
+                                    Logica(x, y + 1) = Logica(x, y)
+                                    Evida(x, y + 1) = Evida(x, y)
+                                    mov = True
+                                ElseIf (LEnemigos.Aux.velocidad = 3 And ((contador Mod 8) = 0)) Then
+                                    Logica(x, y + 1) = Logica(x, y)
+                                    Evida(x, y + 1) = Evida(x, y)
+                                    mov = True
+                                ElseIf (LEnemigos.Aux.velocidad = 2 And ((contador Mod 9) = 0)) Then
+                                    Logica(x, y + 1) = Logica(x, y)
+                                    Evida(x, y + 1) = Evida(x, y)
+                                    mov = True
+                                ElseIf (LEnemigos.Aux.velocidad = 1 And ((contador Mod 10) = 0)) Then
+
+                                    Logica(x, y + 1) = Logica(x, y)
+                                    Evida(x, y + 1) = Evida(x, y)
+                                    mov = True
+
+                                End If
+
+
+                            End If
+
+
+
+                        ElseIf (y = 9) Then
                         End If
-                        Logica(x, y) = "0"
-                        Evida(x,y)=0
+                        If (mov) Then
+                            Logica(x, y) = "0"
+                            Evida(x, y) = 0
+                        End If
+
                     End If
 
 
@@ -118,7 +252,7 @@ Public Class Juego
             Next
         Next
 
-        If (Salidas = 10) Then
+        If (Salidas = 20) Then
             Try
                 Dim Lugar = numAleatorio.Next(0, 9)
                 If (Logica(Lugar, 0).Equals("0")) Then
@@ -136,6 +270,12 @@ Public Class Juego
 
         Else
             Salidas = Salidas + 1
+        End If
+
+        If (contador = 10) Then
+            contador = 1
+        Else
+            contador = contador + 1
         End If
 
     End Sub
