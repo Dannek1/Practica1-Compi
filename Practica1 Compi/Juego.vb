@@ -17,6 +17,8 @@ Public Class Juego
     Dim Salidas As Integer = 0
     Dim Enemigos(Frecuencia) As Integer
     Dim IEnemigos(Correlativo) As Image
+    Dim DEnemigos(Correlativo) As Image
+
 
 
 
@@ -151,7 +153,7 @@ Public Class Juego
         For x = 0 To 9
             For y = 9 To 0 Step -1
                 If ((Logica(x, y) <> "0")) Then
-                    If Not (Logica(x, y).Equals("x") Or Logica(x, y).Equals("d") Or Logica(x, y).Equals("M")) Then
+                    If Not (Logica(x, y).Equals("x") Or Logica(x, y).Equals("d") Or Logica(x, y).Equals("M") Or Char.IsNumber(Logica(x, y).Chars(0))) Then
                         pivote = BuscarEnemigo(Logica(x, y))
                         tablero.DrawImage(IEnemigos(pivote - 1), (x * 60), (y * 40), 60, 40)
                         If (y <> 9) Then
@@ -173,44 +175,64 @@ Public Class Juego
                                     If (LEnemigos.Aux.velocidad = 10 And Evida(x, y + 1) <> 0) Then
                                         Logica(x, y + 1) = Logica(x, y)
                                         Evida(x, y + 1) = Evida(x, y)
+                                        Logica(x, y + 2) = LEnemigos.Aux.Correlativo
+                                        My.Computer.Audio.Play(LEnemigos.Aux.Rsonido, AudioPlayMode.Background)
                                         mov = True
 
                                     ElseIf (LEnemigos.Aux.velocidad = 9 And ((contador Mod 2) = 0)) Then
                                         Logica(x, y + 1) = Logica(x, y)
                                         Evida(x, y + 1) = Evida(x, y)
+                                        Logica(x, y + 2) = LEnemigos.Aux.Correlativo
+                                        My.Computer.Audio.Play(LEnemigos.Aux.Rsonido, AudioPlayMode.Background)
                                         mov = True
                                     ElseIf (LEnemigos.Aux.velocidad = 8 And ((contador Mod 3) = 0)) Then
                                         Logica(x, y + 1) = Logica(x, y)
                                         Evida(x, y + 1) = Evida(x, y)
+                                        Logica(x, y + 2) = LEnemigos.Aux.Correlativo
+                                        My.Computer.Audio.Play(LEnemigos.Aux.Rsonido, AudioPlayMode.Background)
                                         mov = True
                                     ElseIf (LEnemigos.Aux.velocidad = 7 And ((contador Mod 4) = 0)) Then
                                         Logica(x, y + 1) = Logica(x, y)
                                         Evida(x, y + 1) = Evida(x, y)
+                                        Logica(x, y + 2) = LEnemigos.Aux.Correlativo
+                                        My.Computer.Audio.Play(LEnemigos.Aux.Rsonido, AudioPlayMode.Background)
                                         mov = True
                                     ElseIf (LEnemigos.Aux.velocidad = 6 And ((contador Mod 5) = 0)) Then
                                         Logica(x, y + 1) = Logica(x, y)
                                         Evida(x, y + 1) = Evida(x, y)
+                                        Logica(x, y + 2) = LEnemigos.Aux.Correlativo
+                                        My.Computer.Audio.Play(LEnemigos.Aux.Rsonido, AudioPlayMode.Background)
                                         mov = True
                                     ElseIf (LEnemigos.Aux.velocidad = 5 And ((contador Mod 6) = 0)) Then
                                         Logica(x, y + 1) = Logica(x, y)
                                         Evida(x, y + 1) = Evida(x, y)
+                                        Logica(x, y + 2) = LEnemigos.Aux.Correlativo
+                                        My.Computer.Audio.Play(LEnemigos.Aux.Rsonido, AudioPlayMode.Background)
                                         mov = True
                                     ElseIf (LEnemigos.Aux.velocidad = 4 And ((contador Mod 7) = 0)) Then
                                         Logica(x, y + 1) = Logica(x, y)
                                         Evida(x, y + 1) = Evida(x, y)
+                                        Logica(x, y + 2) = LEnemigos.Aux.Correlativo
+                                        My.Computer.Audio.Play(LEnemigos.Aux.Rsonido, AudioPlayMode.Background)
                                         mov = True
                                     ElseIf (LEnemigos.Aux.velocidad = 3 And ((contador Mod 8) = 0)) Then
                                         Logica(x, y + 1) = Logica(x, y)
                                         Evida(x, y + 1) = Evida(x, y)
+                                        Logica(x, y + 2) = LEnemigos.Aux.Correlativo
+                                        My.Computer.Audio.Play(LEnemigos.Aux.Rsonido, AudioPlayMode.Background)
                                         mov = True
                                     ElseIf (LEnemigos.Aux.velocidad = 2 And ((contador Mod 9) = 0)) Then
                                         Logica(x, y + 1) = Logica(x, y)
                                         Evida(x, y + 1) = Evida(x, y)
+                                        Logica(x, y + 2) = LEnemigos.Aux.Correlativo
+                                        My.Computer.Audio.Play(LEnemigos.Aux.Rsonido, AudioPlayMode.Background)
                                         mov = True
                                     ElseIf (LEnemigos.Aux.velocidad = 1 And ((contador Mod 10) = 0)) Then
 
                                         Logica(x, y + 1) = Logica(x, y)
                                         Evida(x, y + 1) = Evida(x, y)
+                                        Logica(x, y + 2) = LEnemigos.Aux.Correlativo
+                                        My.Computer.Audio.Play(LEnemigos.Aux.Rsonido, AudioPlayMode.Background)
                                         mov = True
 
                                     End If
@@ -228,49 +250,70 @@ Public Class Juego
                                 Evida(x, y) = 0
                                 Logica(x, y) = "0"
 
+
                             Else
 
-                                    If (LEnemigos.Aux.velocidad = 10 And Evida(x, y + 1) <> 0) Then
+                                If (LEnemigos.Aux.velocidad = 10 And Evida(x, y + 1) <> 0) Then
                                     Logica(x, y + 1) = Logica(x, y)
                                     Evida(x, y + 1) = Evida(x, y)
+                                    Logica(x, y + 2) = LEnemigos.Aux.Correlativo
+                                    My.Computer.Audio.Play(LEnemigos.Aux.Rsonido, AudioPlayMode.Background)
                                     mov = True
 
                                 ElseIf (LEnemigos.Aux.velocidad = 9 And ((contador Mod 2) = 0)) Then
                                     Logica(x, y + 1) = Logica(x, y)
                                     Evida(x, y + 1) = Evida(x, y)
+                                    Logica(x, y + 2) = LEnemigos.Aux.Correlativo
+                                    My.Computer.Audio.Play(LEnemigos.Aux.Rsonido, AudioPlayMode.Background)
                                     mov = True
                                 ElseIf (LEnemigos.Aux.velocidad = 8 And ((contador Mod 3) = 0)) Then
                                     Logica(x, y + 1) = Logica(x, y)
                                     Evida(x, y + 1) = Evida(x, y)
+                                    Logica(x, y + 2) = LEnemigos.Aux.Correlativo
+                                    My.Computer.Audio.Play(LEnemigos.Aux.Rsonido, AudioPlayMode.Background)
                                     mov = True
                                 ElseIf (LEnemigos.Aux.velocidad = 7 And ((contador Mod 4) = 0)) Then
                                     Logica(x, y + 1) = Logica(x, y)
                                     Evida(x, y + 1) = Evida(x, y)
+                                    Logica(x, y + 2) = LEnemigos.Aux.Correlativo
+                                    My.Computer.Audio.Play(LEnemigos.Aux.Rsonido, AudioPlayMode.Background)
                                     mov = True
                                 ElseIf (LEnemigos.Aux.velocidad = 6 And ((contador Mod 5) = 0)) Then
                                     Logica(x, y + 1) = Logica(x, y)
                                     Evida(x, y + 1) = Evida(x, y)
+                                    Logica(x, y + 2) = LEnemigos.Aux.Correlativo
+                                    My.Computer.Audio.Play(LEnemigos.Aux.Rsonido, AudioPlayMode.Background)
                                     mov = True
                                 ElseIf (LEnemigos.Aux.velocidad = 5 And ((contador Mod 6) = 0)) Then
                                     Logica(x, y + 1) = Logica(x, y)
                                     Evida(x, y + 1) = Evida(x, y)
+                                    Logica(x, y + 2) = LEnemigos.Aux.Correlativo
+                                    My.Computer.Audio.Play(LEnemigos.Aux.Rsonido, AudioPlayMode.Background)
                                     mov = True
                                 ElseIf (LEnemigos.Aux.velocidad = 4 And ((contador Mod 7) = 0)) Then
                                     Logica(x, y + 1) = Logica(x, y)
                                     Evida(x, y + 1) = Evida(x, y)
+                                    Logica(x, y + 2) = LEnemigos.Aux.Correlativo
+                                    My.Computer.Audio.Play(LEnemigos.Aux.Rsonido, AudioPlayMode.Background)
                                     mov = True
                                 ElseIf (LEnemigos.Aux.velocidad = 3 And ((contador Mod 8) = 0)) Then
                                     Logica(x, y + 1) = Logica(x, y)
                                     Evida(x, y + 1) = Evida(x, y)
+                                    Logica(x, y + 2) = LEnemigos.Aux.Correlativo
+                                    My.Computer.Audio.Play(LEnemigos.Aux.Rsonido, AudioPlayMode.Background)
                                     mov = True
                                 ElseIf (LEnemigos.Aux.velocidad = 2 And ((contador Mod 9) = 0)) Then
                                     Logica(x, y + 1) = Logica(x, y)
                                     Evida(x, y + 1) = Evida(x, y)
+                                    Logica(x, y + 2) = LEnemigos.Aux.Correlativo
+                                    My.Computer.Audio.Play(LEnemigos.Aux.Rsonido, AudioPlayMode.Background)
                                     mov = True
                                 ElseIf (LEnemigos.Aux.velocidad = 1 And ((contador Mod 10) = 0)) Then
 
                                     Logica(x, y + 1) = Logica(x, y)
                                     Evida(x, y + 1) = Evida(x, y)
+                                    Logica(x, y + 2) = LEnemigos.Aux.Correlativo
+                                    My.Computer.Audio.Play(LEnemigos.Aux.Rsonido, AudioPlayMode.Background)
                                     mov = True
 
                                 End If
@@ -287,11 +330,46 @@ Public Class Juego
                             Evida(x, y) = 0
                         End If
 
+
+                    ElseIf (Char.IsNumber(Logica(x, y).Chars(0))) Then
+                        Try
+                            pivote = BuscarEnemigo(Integer.Parse(Logica(x, y)))
+                            tablero.DrawImage(DEnemigos(pivote - 1), (x * 60), (y * 40), 60, 40)
+                            If (Logica(x, y + 1).Equals("M")) Then
+                                Evida(x, y + 1) = Evida(x, y + 1) - LEnemigos.Aux.ataque
+
+                                If (Evida(x, y + 1) <= 0) Then
+                                    Evida(x, y + 1) = 0
+                                    Logica(x, y + 1) = "0"
+
+                                End If
+
+                                Evida(x, y) = 0
+                                Logica(x, y) = "0"
+
+                            ElseIf (Logica(x, y + 1).Equals("x")) Then
+                                Logica(x, y) = "0"
+                                vida = vida - LEnemigos.Aux.ataque
+                                TextBox1.Text = vida
+
+
+
+                            Else
+                                Logica(x, y + 1) = Logica(x, y)
+                                Logica(x, y) = "0"
+                            End If
+                        Catch ex As Exception
+                            Logica(x, y) = "0"
+                        End Try
+
+
+
                     End If
 
 
 
-                End If
+                    End If
+
             Next
         Next
 
@@ -322,6 +400,29 @@ Public Class Juego
         End If
 
     End Sub
+    Public Function BuscarEnemigo(Correlativo As Integer)
+        Dim Seguir As Boolean = True
+        LEnemigos.Aux = LEnemigos.cabeza
+
+        While (Seguir)
+
+            If (LEnemigos.Aux.Correlativo = Correlativo) Then
+                Seguir = False
+
+            Else
+                If (LEnemigos.Aux.Siguiente Is Nothing) Then
+                    Seguir = False
+                Else
+                    LEnemigos.Aux = LEnemigos.Aux.Siguiente
+
+                End If
+
+            End If
+
+        End While
+
+        Return LEnemigos.Aux.Correlativo
+    End Function
 
     Public Function BuscarEnemigo(nombre As String)
         Dim Seguir As Boolean = True
@@ -426,6 +527,7 @@ Public Class Juego
 
         While (seguir)
             IEnemigos(LEnemigos.Aux.Correlativo - 1) = Image.FromFile(LEnemigos.Aux.Renemigo)
+            DEnemigos(LEnemigos.Aux.Correlativo - 1) = Image.FromFile(LEnemigos.Aux.Rdisparo)
 
             If (LEnemigos.Aux.Siguiente Is Nothing) Then
                 seguir = False
