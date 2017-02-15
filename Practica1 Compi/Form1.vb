@@ -42,4 +42,12 @@ Public Class Form1
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         End
     End Sub
+
+    Private Sub AbrirToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AbrirToolStripMenuItem.Click
+        If OpenFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+            Dim sr As New System.IO.StreamReader(OpenFileDialog1.FileName)
+            TextBox1.Text = (sr.ReadToEnd)
+            sr.Close()
+        End If
+    End Sub
 End Class

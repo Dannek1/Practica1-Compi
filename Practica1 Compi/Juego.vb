@@ -53,12 +53,13 @@ Public Class Juego
             Next
         Next
 
+        Logica(0, 7) = "M"
         Logica(2, 7) = "M"
         Logica(4, 7) = "M"
         Logica(6, 7) = "M"
         Logica(8, 7) = "M"
 
-
+        Evida(0, 7) = LDefendas.Aux.defensa
         Evida(2, 7) = LDefendas.Aux.defensa
         Evida(4, 7) = LDefendas.Aux.defensa
         Evida(6, 7) = LDefendas.Aux.defensa
